@@ -1,0 +1,4119 @@
+name: SYNTHEA_HEALTHCARE
+description: This semantic view supports the synthetic healthcare data set available in the Snowflake marketplace.
+tables:
+  - name: ALLERGIES
+    synonyms:
+      - allergies
+      - hypersensitivities
+      - sensitivities
+      - intolerances
+      - adverse reactions
+    description: This table stores information about a patient's allergies, including the start and stop dates of the allergy, the patient and encounter IDs, the allergy code and description, and details about the reaction, including the reaction code, description, and severity.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: ALLERGIES
+    dimensions:
+      - name: ALLERGY_ID
+        synonyms:
+          - allergy_identifier
+          - allergy_code
+          - allergy_key
+          - allergy_reference
+          - allergy_unique_id
+        description: Unique identifier for a specific allergy.
+        expr: ALLERGY_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1018124'
+          - '1018094'
+          - '1009152'
+      - name: CATEGORY
+        synonyms:
+          - classification
+          - grouping
+          - type
+          - class
+          - grouping_type
+          - categorization
+          - kind
+          - sort
+          - genre
+        description: The category of the allergy, which can be related to food, environmental factors, or medication.
+        expr: CATEGORY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - food
+          - environment
+          - medication
+      - name: CODE
+        synonyms:
+          - identifier
+          - classification
+          - allergy_type
+          - allergy_code
+          - diagnosis_code
+          - medical_code
+        description: Allergy codes as per the SNOMED CT clinical terminology, where each code represents a specific allergy or intolerance, such as penicillin allergy (111088007), peanut allergy (84489001), or latex allergy (288328004).
+        expr: CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '111088007'
+          - '84489001'
+          - '288328004'
+      - name: DESCRIPTION
+        synonyms:
+          - description_text
+          - details
+          - explanation
+          - notes
+          - summary
+          - account
+          - depiction
+          - portrayal
+          - representation
+          - specification
+        description: This column stores the type of allergen that a patient is allergic to, such as a specific organism, substance, or medication.
+        expr: DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - House dust mite (organism)
+          - Shellfish (substance)
+          - Aspirin
+      - name: DESCRIPTION1
+        synonyms:
+          - allergy_description1
+          - reaction1_description
+          - allergy_reaction1_details
+          - description_of_reaction1
+          - reaction1_info
+        description: This column stores the description of various allergies, which can be used to identify and categorize different types of allergic reactions or conditions.
+        expr: DESCRIPTION1
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Cough (finding)
+          - Anaphylaxis (disorder)
+      - name: DESCRIPTION2
+        synonyms:
+          - allergy_description2
+          - reaction_description2
+          - allergy_reaction2_description
+          - second_allergy_description
+          - reaction2_details
+        description: This column stores the specific allergy symptoms or reactions experienced by patients, such as vomiting, diarrhea, or coughing.
+        expr: DESCRIPTION2
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Finding of vomiting (finding)
+          - Diarrhea (finding)
+          - Cough (finding)
+      - name: ENCOUNTER_ID
+        synonyms:
+          - visit_id
+          - encounter_number
+          - patient_visit_id
+          - visit_identifier
+          - admission_id
+          - patient_encounter_number
+        description: Unique identifier for the encounter during which the allergy was recorded.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '3090886'
+          - '3070615'
+          - '3091349'
+      - name: PATIENT_ID
+        synonyms:
+          - patient_number
+          - person_id
+          - subject_id
+          - individual_id
+          - patient_identifier
+          - medical_record_number
+          - patient_reference
+        description: Unique identifier for the patient who has the allergy.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '2109523'
+          - '2109456'
+          - '2109458'
+      - name: REACTION1
+        synonyms:
+          - allergic_response1
+          - reaction_type1
+          - adverse_reaction1
+          - sensitivity1
+          - intolerance1
+        description: Reaction to an allergen.
+        expr: REACTION1
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '402387002'
+          - '300359004'
+          - '21626009'
+      - name: REACTION2
+        synonyms:
+          - allergic_response2
+          - reaction_level2
+          - sensitivity2
+          - intolerance2
+          - adverse_reaction2
+        description: Reaction to the allergen.
+        expr: REACTION2
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '402387002'
+          - '404640003'
+          - '49727002'
+      - name: SEVERITY1
+        synonyms:
+          - allergy_severity_level
+          - reaction_severity
+          - severity_level_1
+          - allergy_reaction_intensity
+          - reaction_intensity_1
+        description: The severity level of the allergy, categorized as either mild or moderate, indicating the potential impact of the allergen on the individual.
+        expr: SEVERITY1
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - MILD
+          - MODERATE
+      - name: SEVERITY2
+        synonyms:
+          - allergy_severity_level2
+          - reaction_severity2
+          - severity_level2
+          - allergy_reaction_intensity2
+          - reaction_intensity2
+        description: The severity level of the allergy, categorized as either mild or moderate, indicating the potential impact of the allergic reaction on the individual.
+        expr: SEVERITY2
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - MILD
+          - MODERATE
+      - name: SYNTHEA_CITY
+        synonyms:
+          - city_of_residence
+          - patient_city
+          - city
+          - residence_city
+          - patient_residence
+          - city_of_patient
+          - city_of_record
+        description: The city where the patient's allergy was diagnosed or reported.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - MIAMI
+          - SAN FRANCISCO
+          - DETROIT
+      - name: SYSTEM
+        synonyms:
+          - origin
+          - source
+          - origin_system
+          - data_source
+          - source_system
+          - system_of_record
+          - data_origin
+        description: The source system that identified the allergy, such as a standardized medical terminology system (e.g. SNOMED-CT, RxNorm) or an unknown source.
+        expr: SYSTEM
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - SNOMED-CT
+          - RxNorm
+          - Unknown
+      - name: TYPE
+        synonyms:
+          - kind
+          - classification
+          - category_type
+          - allergy_type
+          - allergy_class
+        description: The type of allergy or intolerance a patient has, either an allergy (an overreaction of the immune system) or an intolerance (an adverse reaction that does not involve the immune system).
+        expr: TYPE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - allergy
+          - intolerance
+    time_dimensions:
+      - name: ALLERGY_START
+        synonyms:
+          - allergy_onset
+          - allergy_begin_date
+          - allergy_initiation_date
+          - start_date_of_allergy
+          - allergy_commencement_date
+          - date_allergy_started
+        description: Date when the allergy was first identified or diagnosed.
+        expr: ALLERGY_START
+        data_type: DATE
+        sample_values:
+          - '1972-03-31'
+          - '2022-09-03'
+          - '1965-03-20'
+      - name: ALLERGY_STOP
+        synonyms:
+          - allergy_end
+          - allergy_end_date
+          - allergy_termination
+          - allergy_cessation
+          - allergy_resolution
+          - allergy_discontinuation
+          - allergy_completion
+        description: The date and time when the allergy was marked as stopped or resolved.
+        expr: ALLERGY_STOP
+        data_type: DATE
+    primary_key:
+      columns:
+        - ALLERGY_ID
+  - name: CARE_PLANS
+    synonyms:
+      - treatment plans
+      - care plan
+      - patient care plans
+      - medical plans
+      - care program
+      - patient treatment plans
+      - health plans
+      - care strategy
+      - patient care program
+    description: This table stores information about care plans for patients, including the start and stop dates, patient and encounter details, care plan codes and descriptions, and reason codes and descriptions, as well as the city where the care plan was created or managed.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: CARE_PLANS
+    dimensions:
+      - name: CARE_PLAN_ID
+        synonyms:
+          - care_plan_identifier
+          - care_plan_number
+          - care_plan_key
+          - plan_id
+          - care_plan_code
+          - treatment_plan_id
+          - patient_care_plan_id
+          - care_plan_unique_id
+        description: Unique identifier for a care plan, used to track and manage a patient's specific treatment or care strategy.
+        expr: CARE_PLAN_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1083093870'
+          - '1083093730'
+          - '1083934510'
+      - name: CODE
+        synonyms:
+          - id
+          - identifier
+          - value
+          - classification
+          - category
+          - designation
+          - label
+        description: Clinical finding or observation.
+        expr: CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '385691007'
+          - '699728000'
+          - '408869004'
+      - name: DESCRIPTION
+        synonyms:
+          - detail
+          - explanation
+          - note
+          - comment
+          - summary
+          - remark
+          - narrative
+          - account
+        description: 'This column stores the type of care plan assigned to a patient, which can be one of the following: Skin condition care, Wound care, or Self-care interventions (procedure).'
+        expr: DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Skin condition care
+          - Wound care
+          - Self-care interventions (procedure)
+      - name: ENCOUNTER_ID
+        synonyms:
+          - visit_id
+          - patient_visit_number
+          - encounter_number
+          - patient_encounter_id
+          - visit_number
+          - admission_id
+        description: Unique identifier for a patient's encounter or visit, used to link care plans to specific patient interactions.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '49652559'
+          - '57036418'
+          - '37743432'
+      - name: PATIENT_ID
+        synonyms:
+          - patient_number
+          - person_id
+          - individual_id
+          - subject_id
+          - medical_record_number
+          - patient_identifier
+        description: Unique identifier for the patient associated with the care plan.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1487734'
+          - '2005047'
+          - '1380898'
+      - name: REASONCODE
+        synonyms:
+          - reason_id
+          - code_reason
+          - diagnosis_code
+          - condition_code
+          - treatment_code
+          - justification_code
+          - rationale_code
+        description: Reason for care plan, as coded from a standardized list of reasons.
+        expr: REASONCODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '15777000'
+          - '16114001'
+      - name: REASONDESCRIPTION
+        synonyms:
+          - reason_text
+          - description_of_reason
+          - reason_explanation
+          - reason_detail
+          - reason_note
+          - justification_description
+        description: The reason or diagnosis for which a care plan was created.
+        expr: REASONDESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Fracture of mandible (disorder)
+          - Hyperlipidemia (disorder)
+          - Contact dermatitis
+      - name: SYNTHEA_CITY
+        synonyms:
+          - city_of_residence
+          - patient_city
+          - city
+          - residence_city
+          - hometown
+          - city_of_birth
+          - city_of_treatment
+        description: The city where the care plan was created or is being managed.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - TAMPA
+          - WASHINGTON DC
+          - CLEVELAND
+    time_dimensions:
+      - name: CAREPLAN_START
+        synonyms:
+          - care_plan_initiation
+          - care_plan_begin
+          - start_of_care
+          - care_plan_commencement
+          - treatment_start_date
+          - care_initiation_date
+        description: The date on which a care plan was initiated or started.
+        expr: CAREPLAN_START
+        data_type: DATE
+        sample_values:
+          - '1986-01-21'
+          - '2022-03-27'
+          - '2014-05-09'
+      - name: CAREPLAN_STOP
+        synonyms:
+          - careplan_end
+          - careplan_termination
+          - careplan_completion
+          - careplan_cessation
+          - end_of_care
+          - careplan_close_date
+        description: Date when a care plan was stopped or discontinued.
+        expr: CAREPLAN_STOP
+        data_type: DATE
+        sample_values:
+          - '2002-01-14'
+          - '2023-08-29'
+          - '2022-12-25'
+    primary_key:
+      columns:
+        - CARE_PLAN_ID
+  - name: CLAIMS
+    synonyms:
+      - claims
+      - medical claims
+      - insurance claims
+      - healthcare claims
+      - patient claims
+      - medical billing
+      - claims data
+      - medical records
+      - patient records
+      - healthcare data
+    description: This table stores information about healthcare claims, including patient and provider details, diagnosis codes, service dates, billing status, and outstanding amounts. It appears to track claims for multiple insurance types (primary, secondary, and possibly a third type denoted by 'P') and captures various stages of the billing process.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: CLAIMS
+    dimensions:
+      - name: CLAIM_ID
+        synonyms:
+          - claim_number
+          - claim_identifier
+          - claim_reference
+          - claim_key
+          - invoice_id
+          - bill_id
+          - claim_code
+        description: Unique identifier for a claim, used to track and manage individual claims throughout the claims process.
+        expr: CLAIM_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '93392613'
+          - '152785605'
+          - '76383309'
+      - name: DEPARTMENT_ID
+        synonyms:
+          - dept_id
+          - department_number
+          - department_code
+          - department_identifier
+          - organizational_unit_id
+        description: Unique identifier for the department that the claim is associated with.
+        expr: DEPARTMENTID
+        data_type: NUMBER(38,0)
+      - name: DIAGNOSIS1
+        synonyms:
+          - primary_diagnosis
+          - main_diagnosis
+          - first_diagnosis
+          - initial_diagnosis
+          - primary_condition
+          - main_condition
+          - first_condition
+        description: Diagnosis code for the patient's condition, as classified by the Systematized Nomenclature of Medicine (SNOMED) clinical terminology.
+        expr: DIAGNOSIS1
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '274531002'
+          - '431857002'
+          - '46177005'
+      - name: DIAGNOSIS2
+        synonyms:
+          - SECONDARY_DIAGNOSIS
+          - SECONDARY_CONDITION
+          - SECONDARY_ILLNESS
+          - SECONDARY_HEALTH_ISSUE
+          - SECONDARY_MEDICAL_CONDITION
+        description: This column contains secondary diagnosis codes for patient claims, as defined by the Systematized Nomenclature of Medicine Clinical Terms (SNOMED CT) standard.
+        expr: DIAGNOSIS2
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '91302008'
+          - '444814009'
+      - name: DIAGNOSIS3
+        synonyms:
+          - third_diagnosis
+          - diagnosis_three
+          - third_diagnosis_code
+          - tertiary_diagnosis
+          - diagnosis_3_code
+        description: This column contains the third diagnosis code for a patient's claim, as assigned by a healthcare provider, using a standardized coding system such as ICD-10.
+        expr: DIAGNOSIS3
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '66383009'
+          - '403191005'
+          - '44465007'
+      - name: DIAGNOSIS4
+        synonyms:
+          - fourth_diagnosis
+          - diagnosis_code_4
+          - icd_4
+          - fourth_icd_code
+          - diagnosis_number_4
+        description: The fourth diagnosis code associated with a patient's claim, as assigned by the healthcare provider, indicating the specific medical condition or disease being treated.
+        expr: DIAGNOSIS4
+        data_type: NUMBER(38,0)
+      - name: DIAGNOSIS5
+        synonyms:
+          - fifth_diagnosis
+          - diagnosis_fifth
+          - fifth_diagnosis_code
+          - diagnosis_number_five
+          - fifth_condition
+        description: The fifth diagnosis code associated with a patient's claim, as classified according to a standardized medical coding system such as ICD-9 or ICD-10.
+        expr: DIAGNOSIS5
+        data_type: NUMBER(38,0)
+      - name: DIAGNOSIS6
+        synonyms:
+          - sixth_diagnosis
+          - diagnosis_six
+          - patient_diagnosis_six
+          - diagnosis_code_six
+          - sixth_diagnosis_code
+          - diagnosis_number_six
+        description: The Diagnosis6 column contains the sixth diagnosis code associated with a claim, which is a standardized code used to identify a specific medical condition or disease, allowing for tracking and analysis of claim data by diagnosis.
+        expr: DIAGNOSIS6
+        data_type: NUMBER(38,0)
+      - name: DIAGNOSIS7
+        synonyms:
+          - seventh_diagnosis
+          - diagnosis_seven
+          - seventh_diagnosis_code
+          - diagnosis_number_seven
+          - seventh_condition_code
+        description: The diagnosis or medical condition associated with the claim, as identified by the seventh diagnosis code.
+        expr: DIAGNOSIS7
+        data_type: NUMBER(38,0)
+      - name: DIAGNOSIS8
+        synonyms:
+          - eighth_diagnosis
+          - diagnosis_eight
+          - eighth_condition
+          - diagnosis_number_eight
+          - eighth_medical_diagnosis
+        description: This column contains the eighth diagnosis code associated with a claim, which is a standardized code used to identify a specific medical condition or disease.
+        expr: DIAGNOSIS8
+        data_type: NUMBER(38,0)
+      - name: ENCOUNTER_ID
+        synonyms:
+          - visit_id
+          - patient_visit_id
+          - encounter_number
+          - patient_encounter_number
+          - visit_number
+          - admission_id
+        description: Unique identifier for a patient's visit or encounter with a healthcare provider.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '18607441'
+          - '36801697'
+          - '12413598'
+      - name: HEALTHCARECLAIMTYPEID1
+        synonyms:
+          - claim_type_id_1
+          - primary_claim_type
+          - healthcare_claim_category_1
+          - medical_claim_type_1
+          - insurance_claim_type_1
+        description: A unique identifier for the type of healthcare claim, such as medical, dental, or vision, to categorize and track different types of claims submitted by patients or providers.
+        expr: HEALTHCARECLAIMTYPEID1
+        data_type: NUMBER(38,0)
+      - name: HEALTHCARECLAIMTYPEID2
+        synonyms:
+          - claim_type_id_2
+          - secondary_claim_type
+          - claim_category_2
+          - healthcare_claim_category_id_2
+          - secondary_claim_type_id
+        description: A code that identifies the type of healthcare claim, such as medical, dental, or vision, submitted for reimbursement or payment.
+        expr: HEALTHCARECLAIMTYPEID2
+        data_type: NUMBER(38,0)
+      - name: OUTSTANDING_2
+        synonyms:
+          - outstanding_amount_2
+          - outstanding_balance_2
+          - pending_amount_2
+          - pending_balance_2
+          - unpaid_amount_2
+          - unpaid_balance_2
+          - outstanding_value_2
+          - outstanding_total_2
+        description: This column likely represents the outstanding amount for a specific claim after a second review or adjustment, indicating the remaining balance due after an initial payment or settlement has been made.
+        expr: OUTSTANDING2
+        data_type: NUMBER(38,2)
+      - name: OUTSTANDING_P
+        synonyms:
+          - outstanding_principal
+          - outstanding_amount
+          - outstanding_value
+          - outstanding_balance
+          - outstanding_sum
+          - outstanding_total
+          - outstanding_figure
+        description: The Outstanding_P column likely represents the outstanding principal amount of a claim, which is the remaining balance of the original claim amount that has not yet been paid or settled.
+        expr: OUTSTANDINGP
+        data_type: NUMBER(38,2)
+      - name: OUTSTANDING1
+        synonyms:
+          - outstanding_amount_1
+          - unpaid_balance_1
+          - pending_amount_1
+          - due_amount_1
+          - unsettled_amount_1
+        description: This column likely represents the outstanding amount for a specific claim, possibly the initial outstanding amount or the first installment of a claim.
+        expr: OUTSTANDING1
+        data_type: NUMBER(38,2)
+      - name: PATIENT_ID
+        synonyms:
+          - patient_number
+          - patient_identifier
+          - patient_code
+          - medical_record_number
+          - patient_key
+          - individual_id
+          - person_id
+          - subject_id
+        description: Unique identifier for the patient making the claim.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1313517'
+          - '1313597'
+          - '2350265'
+      - name: PATIENTDEPARTMENTID
+        synonyms:
+          - department_id_for_patient
+          - patient_departmental_id
+          - patient_dept_id
+          - patient_department_number
+          - patient_dept_code
+        description: Unique identifier for the department where the patient is being treated.
+        expr: PATIENTDEPARTMENTID
+        data_type: NUMBER(38,0)
+      - name: PRIMARY_PATIENT_INSURANCE_ID
+        synonyms:
+          - primary_insurance_id
+          - primary_coverage_id
+          - main_insurance_policy
+          - primary_policy_id
+          - primary_insurer_id
+          - primary_health_insurance_id
+          - primary_coverage_provider_id
+        description: Unique identifier for the primary insurance provider of the patient associated with the claim.
+        expr: PRIMARY_PATIENT_INSURANCE_ID
+        data_type: NUMBER(38,0)
+      - name: PROVIDER_ID
+        synonyms:
+          - healthcare_provider_id
+          - supplier_id
+          - practitioner_id
+          - caregiver_id
+          - medical_provider_id
+          - service_provider_id
+          - attending_provider_id
+        description: A unique identifier for the healthcare provider who submitted the claim.
+        expr: PROVIDER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '3058787'
+          - '3057403'
+          - '3057854'
+      - name: REFERRING_PROVIDER_ID
+        synonyms:
+          - referring_doctor_id
+          - referring_physician_id
+          - referring_clinic_id
+          - referring_practitioner_id
+          - referring_healthcare_provider_id
+        description: The unique identifier of the healthcare provider who referred the patient for the claim.
+        expr: REFERRING_PROVIDER_ID
+        data_type: NUMBER(38,0)
+      - name: SECONDARY_PATIENT_INSURANCE_ID
+        synonyms:
+          - secondary_insurance_id
+          - secondary_policy_id
+          - secondary_coverage_id
+          - secondary_benefits_id
+          - supplemental_insurance_id
+          - secondary_health_plan_id
+          - secondary_coverage_plan_id
+        description: Unique identifier for the secondary insurance provider of the patient associated with the claim.
+        expr: SECONDARY_PATIENT_INSURANCE_ID
+        data_type: NUMBER(38,0)
+      - name: STATUS1
+        synonyms:
+          - claim_status
+          - status_code
+          - claim_state
+          - processing_status
+          - current_status
+          - claim_condition
+        description: The current status of a claim, indicating whether it has been billed to the insurance provider (BILLED) or the claim has been fully processed and closed (CLOSED).
+        expr: STATUS1
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - BILLED
+          - CLOSED
+      - name: STATUS2
+        synonyms:
+          - claim_status_2
+          - secondary_claim_status
+          - claim_phase_2
+          - secondary_status
+          - claim_progress_2
+          - secondary_claim_phase
+        description: The current status of the claim, indicating whether it has been closed or billed.
+        expr: STATUS2
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - CLOSED
+          - BILLED
+      - name: STATUSP
+        synonyms:
+          - patient_status
+          - patient_condition
+          - patient_progress
+          - patient_outcome
+          - patient_result
+          - patient_disposition
+          - patient_resolution
+        description: The current processing status of the claim, indicating whether it is pending, approved, denied, or in another state.
+        expr: STATUSP
+        data_type: VARCHAR(16777216)
+      - name: SUPERVISING_PROVIDER_ID
+        synonyms:
+          - overseeing_provider_id
+          - managing_provider_id
+          - supervisory_provider_id
+          - primary_care_provider_id
+          - attending_provider_id
+        description: The unique identifier of the healthcare provider who supervised the rendering provider for the claim.
+        expr: SUPERVISING_PROVIDER_ID
+        data_type: NUMBER(38,0)
+      - name: SYNTHEA_CITY
+        synonyms:
+          - synthetic_city
+          - simulated_city
+          - artificial_city
+          - fictional_city
+          - mock_city
+          - virtual_city
+          - dummy_city
+        description: The city where the patient received the medical service or treatment associated with the claim.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+    time_dimensions:
+      - name: CURRENTILLNESSDATE
+        synonyms:
+          - illness_onset_date
+          - current_health_issue_date
+          - date_of_current_illness
+          - current_medical_condition_date
+          - current_health_concern_date
+        description: The date on which the current illness or condition being claimed for began.
+        expr: CURRENTILLNESSDATE
+        data_type: TIMESTAMP_NTZ(9)
+      - name: LASTBILLEDDATE1
+        synonyms:
+          - last_payment_date
+          - first_billed_date
+          - initial_billing_date
+          - first_invoice_date
+          - initial_payment_due_date
+        description: The date of the most recent billing activity for a claim.
+        expr: LASTBILLEDDATE1
+        data_type: TIMESTAMP_NTZ(9)
+      - name: LASTBILLEDDATE2
+        synonyms:
+          - second_last_billed_date
+          - last_billed_date_secondary
+          - secondary_last_bill_date
+          - second_to_last_bill_date
+          - last_bill_date_2nd
+        description: The date of the most recent billing activity for a claim.
+        expr: LASTBILLEDDATE2
+        data_type: TIMESTAMP_NTZ(9)
+      - name: LASTBILLEDDATEP
+        synonyms:
+          - last_billed_date_primary
+          - primary_last_bill_date
+          - last_payment_date
+          - final_bill_date
+          - last_invoice_date
+          - primary_last_invoice_date
+          - last_charged_date
+        description: The date of the most recent billing for a claim.
+        expr: LASTBILLEDDATEP
+        data_type: TIMESTAMP_NTZ(9)
+      - name: SERVICEDATE
+        synonyms:
+          - service_date
+          - date_of_service
+          - treatment_date
+          - care_date
+          - visit_date
+          - procedure_date
+          - encounter_date
+          - appointment_date
+        description: The date on which the medical service was provided to the patient.
+        expr: SERVICEDATE
+        data_type: TIMESTAMP_NTZ(9)
+    primary_key:
+      columns:
+        - CLAIM_ID
+  - name: CLAIMS_TX
+    synonyms:
+      - claims_transactions
+      - claims_data
+      - medical_claims
+      - insurance_claims
+      - patient_claims
+      - billing_transactions
+      - medical_billing
+      - claims_history
+      - transactional_claims
+    description: This table stores detailed information about medical claims, including claim identifiers, patient and provider details, charge and payment information, and various codes and references related to the claim, such as procedure codes, diagnosis references, and modifier codes.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: CLAIMS_TX
+    dimensions:
+      - name: CLAIM_ID
+        synonyms:
+          - claim_number
+          - claim_reference
+          - claim_identifier
+          - insurance_claim_id
+          - medical_claim_id
+          - patient_claim_id
+          - billing_claim_id
+          - transaction_claim_id
+        description: Unique identifier for a claim, used to track and manage individual claims throughout the claims processing lifecycle.
+        expr: CLAIM_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '166280725'
+          - '152891139'
+          - '145990131'
+      - name: CLAIMS_TX_ID
+        synonyms:
+          - claim_transaction_id
+          - transaction_id
+          - claim_tx_number
+          - claim_identifier
+          - transaction_identifier
+        description: Unique identifier for a claim transaction.
+        expr: CLAIMS_TX_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '625724258'
+          - '625726202'
+          - '625726191'
+      - name: DEPARTMENTID
+        synonyms:
+          - dept_id
+          - department_code
+          - department_number
+          - org_unit_id
+          - functional_area_id
+          - business_unit_id
+          - cost_center_id
+        description: The department within the organization that the claim is associated with.
+        expr: DEPARTMENTID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '4'
+          - '1'
+          - '20'
+      - name: DIAGNOSISREF1
+        synonyms:
+          - primary_diagnosis_code
+          - primary_diagnosis_reference
+          - first_diagnosis_id
+          - initial_diagnosis_code
+          - primary_icd_code
+        description: Reference to the primary diagnosis code associated with the claim.
+        expr: DIAGNOSISREF1
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1'
+      - name: DIAGNOSISREF2
+        synonyms:
+          - secondary_diagnosis_code
+          - secondary_diagnosis_reference
+          - diagnosis_code_2
+          - secondary_icd_code
+          - second_diagnosis_id
+        description: Secondary diagnosis reference number.
+        expr: DIAGNOSISREF2
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '2'
+      - name: DIAGNOSISREF3
+        synonyms:
+          - third_diagnosis_reference
+          - diagnosis_code_3
+          - icd_code_3
+          - third_icd_reference
+          - diagnosis_reference_3
+        description: Third diagnosis reference code for the claim, used to further specify the primary or secondary diagnosis.
+        expr: DIAGNOSISREF3
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '3'
+      - name: DIAGNOSISREF4
+        synonyms:
+          - fourth_diagnosis_reference
+          - diagnosis_code_4
+          - icd_code_4
+          - diagnosis_ref_4
+          - fourth_icd_reference
+        description: Fourth diagnosis reference code for the claim, used to provide additional information about the patient's condition or the services provided.
+        expr: DIAGNOSISREF4
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '4'
+      - name: ENCOUNTER_ID
+        synonyms:
+          - visit_id
+          - patient_visit_id
+          - encounter_number
+          - visit_number
+          - patient_encounter_id
+          - admission_id
+        description: Unique identifier for a patient's visit or encounter with a healthcare provider.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '36835537'
+          - '33163253'
+          - '28820730'
+      - name: FEESCHEDULEID
+        synonyms:
+          - fee_schedule_id
+          - fee_id
+          - schedule_id
+          - rate_schedule_id
+          - pricing_schedule_id
+          - fee_code_id
+          - billing_schedule_id
+        description: Unique identifier for the fee schedule associated with the claim.
+        expr: FEESCHEDULEID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1'
+      - name: LINENOTE
+        synonyms:
+          - line_comment
+          - note_text
+          - additional_info
+          - comment_line
+          - remark
+        description: A free-form text field used to capture additional information or notes about a claim, often used to provide context or clarify specific details related to the claim.
+        expr: LINENOTE
+        data_type: VARCHAR(16777216)
+      - name: METHOD
+        synonyms:
+          - approach
+          - technique
+          - procedure
+          - way
+          - manner
+          - mode
+          - treatment
+          - therapy
+          - intervention
+          - modality
+        description: The method by which a claim was paid, either in cash or by check.
+        expr: METHOD
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - CASH
+          - CHECK
+      - name: MODIFIER1
+        synonyms:
+          - modifier_code
+          - procedure_modifier
+          - adjustment_code
+          - claim_modifier
+          - service_modifier
+          - billing_modifier
+          - code_modifier
+          - additional_code
+          - supplemental_code
+        description: Modifier 1 is a code that provides additional information about the procedure or service being billed, such as the type of procedure, the body part or system involved, or the reason for the procedure.
+        expr: MODIFIER1
+        data_type: VARCHAR(16777216)
+      - name: MODIFIER2
+        synonyms:
+          - secondary_modifier
+          - additional_modifier
+          - modifier_extension
+          - supplemental_code
+          - secondary_code
+        description: Modifier 2 is a secondary code used to provide additional information about the procedure or service performed, and is used in conjunction with the primary procedure code to provide more specificity and detail about the claim.
+        expr: MODIFIER2
+        data_type: VARCHAR(16777216)
+      - name: NOTES
+        synonyms:
+          - comments
+          - remarks
+          - descriptions
+          - annotations
+          - explanations
+          - summaries
+          - details
+          - information
+          - records
+          - documentation
+        description: Free text field containing additional information or comments related to a specific claim, such as the reason for a medical visit or procedure, or any notable observations or instructions.
+        expr: NOTES
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Encounter for check up (procedure)
+          - Oral health education (procedure)
+          - Assessment using Alcohol Use Disorders Identification Test - Consumption (procedure)
+      - name: PATIENT_ID
+        synonyms:
+          - patient_number
+          - patient_code
+          - person_id
+          - individual_id
+          - subject_id
+          - medical_record_number
+          - patient_identifier
+        description: Unique identifier for the patient who submitted the claim.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '2339898'
+          - '1402849'
+          - '2313643'
+      - name: PLACE_OF_SERVICE_ID
+        synonyms:
+          - location_id
+          - facility_id
+          - service_location
+          - treatment_site
+          - care_setting_id
+          - service_delivery_location
+          - point_of_service_id
+          - site_id
+        description: Unique identifier for the location where the medical service was provided.
+        expr: PLACE_OF_SERVICE_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1004368'
+          - '1004344'
+          - '1003408'
+      - name: PROCEDURECODE
+        synonyms:
+          - treatment_code
+          - procedure_id
+          - medical_code
+          - service_code
+          - intervention_code
+          - operation_code
+          - surgery_code
+          - medical_procedure_id
+        description: A unique identifier for a medical procedure or service performed, as defined by a standardized coding system such as ICD-10 or CPT, used to track and bill for healthcare services.
+        expr: PROCEDURECODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '314076'
+          - '398171003'
+          - '428211000124100'
+      - name: PROVIDER_ID
+        synonyms:
+          - healthcare_provider_id
+          - supplier_id
+          - practitioner_id
+          - caregiver_id
+          - medical_provider_id
+          - service_provider_id
+          - vendor_id
+        description: Unique identifier for the healthcare provider who submitted the claim.
+        expr: PROVIDER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '3058775'
+          - '3060277'
+          - '3059334'
+      - name: SUPERVISING_PROVIDER_ID
+        synonyms:
+          - overseeing_provider_id
+          - supervisory_provider_id
+          - managing_provider_id
+          - lead_provider_id
+          - primary_care_provider_id
+          - attending_provider_id
+        description: The unique identifier of the healthcare provider who supervised the medical services rendered for the claim.
+        expr: SUPERVISING_PROVIDER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '3057838'
+          - '3058242'
+          - '3057477'
+      - name: SYNTHEA_CITY
+        synonyms:
+          - city_name
+          - municipality
+          - urban_area
+          - metropolitan_area
+          - city_location
+          - geographic_city
+          - city_identifier
+        description: The city where the patient received treatment or the claim was submitted.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - CHICAGO
+          - CLEVELAND
+          - MIAMI
+      - name: TRANSFEROUTID
+        synonyms:
+          - transfer_out_id
+          - external_transfer_id
+          - outgoing_transfer_id
+          - transfer_to_id
+          - external_id_transfer
+          - id_of_transfer_out
+        description: Unique identifier for a claim that has been transferred out to another party, such as another insurance company or a third-party administrator.
+        expr: TRANSFEROUTID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '13427992'
+          - '40154550'
+      - name: TRANSFERTYPE
+        synonyms:
+          - transfer_mode
+          - transfer_category
+          - transfer_classification
+          - relocation_type
+          - movement_type
+        description: Type of transfer or transaction that occurred, where 1 represents an incoming transfer and 2 represents an outgoing transfer.
+        expr: TRANSFERTYPE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - '2'
+          - '1'
+      - name: TYPE
+        synonyms:
+          - category
+          - classification
+          - kind
+          - sort
+          - designation
+          - label
+          - classification_type
+        description: The TYPE column in the CLAIMS_TX table represents the type of transaction that occurred, indicating whether it was a payment made, a charge incurred, or a transfer of funds into the account.
+        expr: TYPE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - PAYMENT
+          - CHARGE
+          - TRANSFERIN
+    time_dimensions:
+      - name: FROMDATE
+        synonyms:
+          - start_date
+          - begin_date
+          - initial_date
+          - effective_date
+          - commencement_date
+          - inception_date
+          - origination_date
+        description: Date and time when the claim was submitted.
+        expr: FROMDATE
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2019-12-17T23:35:21.000+0000
+          - 1957-10-12T14:30:19.000+0000
+          - 2023-03-16T18:12:00.000+0000
+      - name: TODATE
+        synonyms:
+          - end_date
+          - to_date
+          - end_timestamp
+          - termination_date
+          - expiration_date
+          - end_period
+          - closing_date
+          - completion_date
+        description: Date and time when the claim was made.
+        expr: TODATE
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2000-12-30T20:20:56.000+0000
+          - 2021-09-26T05:38:49.000+0000
+          - 2021-03-19T15:33:05.000+0000
+    facts:
+      - name: ADJUSTMENTS
+        synonyms:
+          - corrections
+          - modifications
+          - changes
+          - alterations
+          - revisions
+          - amendments
+          - updates
+          - rectifications
+          - fine_tunes
+        description: The total amount of adjustments made to a claim, which may include reductions or increases to the original claim amount due to various reasons such as overpayment, underpayment, or changes in claim details.
+        expr: ADJUSTMENTS
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '0'
+      - name: AMOUNT
+        synonyms:
+          - cost
+          - price
+          - charge
+          - total
+          - value
+          - sum
+          - quantity
+          - figure
+          - payment
+          - expense
+        description: The amount paid out for a claim.
+        expr: AMOUNT
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '73.76'
+          - '496.15'
+      - name: CHARGEID
+        synonyms:
+          - charge_number
+          - service_id
+          - billing_id
+          - invoice_id
+          - transaction_id
+          - fee_id
+          - cost_center_id
+          - expense_id
+        description: Unique identifier for a specific medical charge or service provided to a patient.
+        expr: CHARGEID
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '250066483'
+          - '30395119'
+          - '123595628'
+      - name: OUTSTANDING
+        synonyms:
+          - pending
+          - due
+          - owed
+          - unsettled
+          - remaining_balance
+          - amount_outstanding
+          - balance_due
+          - unpaid_amount
+        description: The outstanding amount of a claim, representing the remaining balance that has not been paid or settled.
+        expr: OUTSTANDING
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '14.33'
+          - '0.00'
+          - '198.46'
+      - name: PAYMENTS
+        synonyms:
+          - payment_amount
+          - payment_value
+          - paid_amount
+          - settlement
+          - compensation
+          - reimbursement
+          - remittance
+          - disbursement
+          - expenditure
+          - outlay
+        description: The total amount paid out for a claim.
+        expr: PAYMENTS
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '136.00'
+          - '345.12'
+          - '1.18'
+      - name: TRANSFERS
+        synonyms:
+          - transferred_amount
+          - transfer_value
+          - moved_funds
+          - relocated_funds
+          - shifted_funds
+          - transferred_sum
+        description: The total amount of money transferred to or from the claimant as part of the claim settlement.
+        expr: TRANSFERS
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '198.46'
+          - '99.23'
+      - name: UNITAMOUNT
+        synonyms:
+          - unit_cost
+          - unit_price
+          - amount_per_unit
+          - unit_value
+          - cost_per_unit
+          - price_per_unit
+        description: The amount paid for a single unit of a claim, representing the monetary value of a specific item or service provided.
+        expr: UNITAMOUNT
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '106.81'
+          - '379.98'
+          - '2140.06'
+      - name: UNITS
+        synonyms:
+          - quantity
+          - amount
+          - volume
+          - count
+          - measure
+          - dosage
+          - capacity
+          - allocation
+          - portion
+          - share
+        description: The number of units or quantity of the item or service claimed.
+        expr: UNITS
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '1'
+    primary_key:
+      columns:
+        - CLAIMS_TX_ID
+  - name: CONDITIONS
+    synonyms:
+      - conditions
+      - patient_conditions
+      - medical_conditions
+      - health_conditions
+      - clinical_conditions
+      - patient_status
+      - medical_history
+      - health_status
+      - clinical_history
+    description: This table stores information about medical conditions associated with patients, including the start and stop dates of the condition, the patient and encounter IDs, and details about the condition itself, such as the system, code, description, and city where the condition was diagnosed or treated.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: CONDITIONS
+    dimensions:
+      - name: CODE
+        synonyms:
+          - id
+          - identifier
+          - classification
+          - category
+          - designation
+          - value
+        description: Clinical finding or observation
+        expr: CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '224299000'
+          - '713197008'
+          - '160903007'
+      - name: CONDITION_ID
+        synonyms:
+          - condition_code
+          - diagnosis_id
+          - health_issue_id
+          - medical_condition_id
+          - patient_condition_number
+          - disease_id
+        description: Unique identifier for a specific medical condition or diagnosis.
+        expr: CONDITION_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1002852'
+          - '1004953'
+          - '1002723'
+      - name: DESCRIPTION
+        synonyms:
+          - detailed_info
+          - detailed_description
+          - info
+          - details
+          - narrative
+          - explanation
+          - definition
+          - note
+          - comment
+          - remark
+        description: This column stores the names of various medical conditions or employment statuses, providing a descriptive label for each condition or status.
+        expr: DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Gingivitis (disorder)
+          - Full-time employment (finding)
+          - Alzheimer's disease (disorder)
+      - name: ENCOUNTER_ID
+        synonyms:
+          - visit_id
+          - patient_visit_number
+          - encounter_number
+          - patient_encounter_id
+          - visit_number
+          - admission_id
+        description: Unique identifier for a patient's visit or encounter in the healthcare system.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '32159577'
+          - '36669698'
+          - '32120151'
+      - name: PATIENT_ID
+        synonyms:
+          - patient_number
+          - person_id
+          - individual_id
+          - subject_id
+          - patient_identifier
+          - unique_patient_identifier
+          - patient_key
+        description: Unique identifier for the patient in the healthcare system.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '2213599'
+          - '2221848'
+          - '2202279'
+      - name: SYNTHEA_CITY
+        synonyms:
+          - city_of_residence
+          - patient_city
+          - city
+          - residence_city
+          - patient_residence
+          - city_of_birth
+          - hometown
+        description: The city where the patient received treatment or care.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - CLEVELAND
+          - SALT LAKE CITY
+          - CHICAGO
+      - name: SYSTEM
+        synonyms:
+          - origin
+          - source
+          - source_system
+          - data_source
+          - system_of_record
+          - origin_system
+          - data_origin
+        description: The standard clinical terminology used to classify the condition.
+        expr: SYSTEM
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - SNOMED-CT
+          - http://snomed.info/sct
+    time_dimensions:
+      - name: CONDITION_START
+        synonyms:
+          - condition_onset
+          - start_date
+          - condition_begin
+          - diagnosis_start
+          - onset_date
+          - start_of_condition
+          - condition_initiation
+        description: The date when a specific condition or circumstance began.
+        expr: CONDITION_START
+        data_type: DATE
+        sample_values:
+          - '2019-06-25'
+          - '1972-09-28'
+          - '1990-03-06'
+      - name: CONDITION_STOP
+        synonyms:
+          - condition_end
+          - condition_termination
+          - end_date
+          - stop_date
+          - condition_completion
+          - termination_date
+        description: Date when a condition or treatment was stopped.
+        expr: CONDITION_STOP
+        data_type: DATE
+        sample_values:
+          - '2023-11-27'
+          - '2024-01-09'
+          - '2023-10-04'
+    primary_key:
+      columns:
+        - CONDITION_ID
+  - name: DEVICES
+    synonyms:
+      - equipment
+      - hardware
+      - apparatus
+      - instruments
+      - gadgets
+      - tools
+      - appliances
+      - machinery
+      - gear
+    description: This table stores information about medical devices used during patient encounters, including the device's unique identifier, start and stop timestamps, associated patient and encounter identifiers, device code, description, Unique Device Identifier (UDI), and the city where the device was manufactured or distributed (Synthea City).
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: DEVICES
+    dimensions:
+      - name: CODE
+        synonyms:
+          - id
+          - identifier
+          - device_code
+          - code_value
+          - device_identifier
+          - classification_code
+        description: Device or finding related to the patient's condition.
+        expr: CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '705427004'
+          - '228869008'
+          - '702172008'
+      - name: DESCRIPTION
+        synonyms:
+          - detailed_info
+          - detailed_description
+          - item_description
+          - product_info
+          - item_info
+          - narrative
+          - details
+          - explanation
+          - note
+          - comments
+        description: This column stores the type of medical device, categorized by its physical object or equipment used in various settings such as hospitals or homes.
+        expr: DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Hospital bed  device (physical object)
+          - Home nebulizer (physical object)
+          - Dental x-ray system (physical object)
+      - name: DEVICE_ID
+        synonyms:
+          - device_number
+          - equipment_id
+          - device_identifier
+          - hardware_id
+          - machine_id
+          - unit_id
+        description: Unique identifier for a device in the system, used to track and distinguish individual devices.
+        expr: DEVICE_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1000859'
+          - '1016641'
+          - '1016672'
+      - name: ENCOUNTER_ID
+        synonyms:
+          - visit_id
+          - patient_visit_number
+          - encounter_number
+          - visit_number
+          - admission_id
+          - patient_encounter_number
+        description: Unique identifier for a patient encounter or visit.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '14610870'
+          - '14609584'
+          - '14610834'
+      - name: PATIENT_ID
+        synonyms:
+          - patient_number
+          - person_id
+          - subject_id
+          - individual_id
+          - patient_identifier
+          - medical_record_number
+          - patient_code
+        description: Unique identifier for a patient in the healthcare system.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '14610870'
+          - '6048777'
+          - '14609584'
+      - name: SYNTHEA_CITY
+        synonyms:
+          - city_of_origin
+          - city_of_residence
+          - patient_city
+          - city_of_encounter
+          - city_of_treatment
+          - city_of_record
+        description: The city where the device is located.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - AUSTIN
+          - WASHINGTON DC
+          - CLEVELAND
+      - name: UDI
+        synonyms:
+          - unique_device_identifier
+          - device_id_code
+          - medical_device_identifier
+          - udi_code
+          - device_unique_id
+        description: Unique Device Identifier (UDI) for medical devices, as defined by the FDA, which includes a Device Identifier (DI) and a Production Identifier (PI) in the format (01)DI(11)Production Identifier(17)Expiration Date(10)Serial Number(21) Lot or Batch Number.
+        expr: UDI
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - (01)67376902524156(11)240412(17)490427(10)4295906454871(21)59288581
+          - (01)79329389690631(11)100626(17)350711(10)77891353861740(21)2097657594769797
+          - (01)85382578464717(11)230515(17)480529(10)65037771884861520(21)510162478710626
+    time_dimensions:
+      - name: DEVICE_START
+        synonyms:
+          - device_activation_time
+          - device_initiation_time
+          - device_launch_time
+          - device_on_time
+          - device_start_time
+          - device_startup_time
+          - initialization_time
+          - start_time
+          - activation_timestamp
+        description: The date and time when each device was first activated or started.
+        expr: DEVICE_START
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2024-01-30T11:51:21.000+0000
+          - 2012-05-18T20:23:45.000+0000
+          - 2019-11-28T11:22:38.000+0000
+      - name: DEVICE_STOP
+        synonyms:
+          - device_end
+          - device_termination
+          - end_time
+          - stop_time
+          - device_completion
+          - termination_time
+        description: The date and time when a device was last stopped or shut down.
+        expr: DEVICE_STOP
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2022-06-28T19:40:34.000+0000
+          - 2021-10-22T18:42:33.000+0000
+          - 2022-10-14T18:56:21.000+0000
+    primary_key:
+      columns:
+        - DEVICE_ID
+  - name: ENCOUNTERS
+    synonyms:
+      - encounters
+      - patient_visits
+      - medical_encounters
+      - healthcare_visits
+      - patient_appointments
+      - medical_visits
+      - clinical_encounters
+      - patient_interactions
+    description: This table stores information about patient encounters, including the start and stop times, patient and provider details, encounter classification, costs, and payer information, as well as the reason for the encounter and the city where the encounter took place.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: ENCOUNTERS
+    dimensions:
+      - name: CODE
+        synonyms:
+          - identifier
+          - classification
+          - category
+          - designation
+          - classification_code
+          - identifier_code
+        description: Encounter type, such as office visit, phone call, or emergency department visit.
+        expr: CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '162673000'
+          - '702927004'
+          - '185345009'
+      - name: DESCRIPTION
+        synonyms:
+          - detail
+          - explanation
+          - note
+          - comment
+          - remark
+          - summary
+          - outline
+          - details
+          - narrative
+        description: A brief description of the reason for a patient's visit or encounter with a healthcare provider.
+        expr: DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Encounter for problem
+          - Encounter for problem (procedure)
+          - Well child visit (procedure)
+      - name: ENCOUNTER_ID
+        synonyms:
+          - visit_id
+          - encounter_number
+          - patient_visit_id
+          - admission_id
+          - case_id
+          - record_id
+          - event_id
+        description: Unique identifier for a patient's visit or interaction with a healthcare provider.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '12913741'
+          - '58116287'
+          - '49450533'
+      - name: ENCOUNTERCLASS
+        synonyms:
+          - encounter_type
+          - visit_type
+          - patient_visit_category
+          - encounter_category
+          - visit_classification
+          - patient_encounter_type
+          - encounter_classification
+        description: The type of care or service provided during an encounter, such as wellness visits, hospice care, or inpatient hospital stays.
+        expr: ENCOUNTERCLASS
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - wellness
+          - hospice
+          - inpatient
+      - name: ORGANIZATION_ID
+        synonyms:
+          - org_id
+          - company_id
+          - institution_id
+          - facility_id
+          - provider_org_id
+          - healthcare_org_id
+          - org_code
+        description: The unique identifier for the organization that the encounter is associated with.
+        expr: ORGANIZATION_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1000369'
+          - '1002995'
+          - '1000408'
+      - name: PATIENT_ID
+        synonyms:
+          - patient_number
+          - person_id
+          - individual_id
+          - subject_id
+          - medical_record_number
+          - patient_identifier
+        description: Unique identifier for the patient associated with the encounter.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '2222114'
+          - '2091720'
+          - '2091775'
+      - name: PAYER_ID
+        synonyms:
+          - payer_identifier
+          - insurance_id
+          - health_insurer_id
+          - coverage_provider_id
+          - payor_id
+          - insurance_company_id
+          - health_plan_id
+        description: Unique identifier for the insurance provider or payer associated with the encounter.
+        expr: PAYER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1000059'
+          - '1000011'
+          - '1000058'
+      - name: PROVIDER_ID
+        synonyms:
+          - healthcare_provider_id
+          - practitioner_id
+          - caregiver_id
+          - supplier_id
+          - medical_provider_id
+          - doctor_id
+          - practitioner_identifier
+        description: Unique identifier for the healthcare provider who conducted the encounter.
+        expr: PROVIDER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '3058937'
+          - '3057524'
+          - '3059315'
+      - name: REASONCODE
+        synonyms:
+          - reason_id
+          - diagnosis_code
+          - condition_code
+          - treatment_reason
+          - service_reason
+          - visit_reason
+          - admission_reason
+          - discharge_reason
+          - code_reason
+          - medical_reason
+        description: Reason for encounter or visit.
+        expr: REASONCODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '431857002'
+          - '274531002'
+      - name: REASONDESCRIPTION
+        synonyms:
+          - reason_text
+          - description_of_reason
+          - reason_summary
+          - explanation_of_reason
+          - reason_note
+          - reason_comment
+        description: The reason or description for the patient's encounter, such as a medical condition or allergy.
+        expr: REASONDESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Chronic kidney disease stage 4 (disorder)
+          - Allergy to substance (finding)
+      - name: SYNTHEA_CITY
+        synonyms:
+          - city_name
+          - municipality
+          - urban_area
+          - metropolitan_area
+          - town_name
+          - geographic_location
+          - city_location
+          - urban_center
+        description: The city where the patient encounter took place.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - DETROIT
+          - MIAMI
+          - CLEVELAND
+    time_dimensions:
+      - name: ENCOUNTER_START
+        synonyms:
+          - admit_date
+          - admission_time
+          - encounter_begin
+          - start_of_encounter
+          - visit_start
+          - episode_start
+          - care_start_date
+          - treatment_start
+        description: The date and time when each patient encounter began.
+        expr: ENCOUNTER_START
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2013-01-26T11:16:00.000+0000
+          - 2021-05-16T02:47:27.000+0000
+          - 2018-12-16T06:30:34.000+0000
+      - name: ENCOUNTER_STOP
+        synonyms:
+          - encounter_end
+          - encounter_completion
+          - end_time
+          - stop_time
+          - encounter_close
+          - discharge_time
+          - end_date
+          - completion_date
+        description: The date and time when an encounter or interaction with a patient or customer was stopped or completed.
+        expr: ENCOUNTER_STOP
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 1999-11-21T08:10:58.000+0000
+          - 2021-05-19T20:47:11.000+0000
+          - 2000-06-20T14:09:58.000+0000
+    facts:
+      - name: BASE_ENCOUNTER_COST
+        synonyms:
+          - initial_encounter_cost
+          - base_cost
+          - encounter_fee
+          - initial_charge
+          - standard_encounter_price
+          - base_rate
+        description: The base cost of an encounter, representing the standard or average cost associated with a specific type of encounter or service, which can be used as a reference point for billing, reimbursement, or cost analysis purposes.
+        expr: BASE_ENCOUNTER_COST
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '71.90'
+          - '113.77'
+          - '119.83'
+      - name: PAYER_COVERAGE
+        synonyms:
+          - payer_reimbursement
+          - insurance_coverage
+          - coverage_amount
+          - payer_payment
+          - reimbursement_amount
+          - insurance_payout
+          - coverage_cost
+        description: The amount of payment made by the payer (e.g. insurance company) for the medical services provided during the encounter.
+        expr: PAYER_COVERAGE
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '807.06'
+          - '339.11'
+          - '416.61'
+      - name: TOTAL_CLAIM_COST
+        synonyms:
+          - total_claim_amount
+          - total_claim_value
+          - claim_total
+          - total_cost_claimed
+          - total_claim_expense
+          - total_claim_payment
+        description: The total cost of all claims associated with an encounter, representing the total amount paid by the healthcare provider or insurance company for the services rendered during the encounter.
+        expr: TOTAL_CLAIM_COST
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '655.32'
+          - '119.38'
+          - '1545.10'
+    primary_key:
+      columns:
+        - ENCOUNTER_ID
+  - name: IMAGING_STUDIES
+    synonyms:
+      - imaging_studies
+      - medical_images
+      - radiology_exams
+      - diagnostic_images
+      - image_records
+      - medical_imaging
+      - radiology_studies
+      - diagnostic_studies
+    description: This table stores information about medical imaging studies, including the date of the image, patient and encounter details, and specifics about the imaging procedure such as the modality, body site, and procedure code.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: IMAGING_STUDIES
+    dimensions:
+      - name: BODYSITE_CODE
+        description: Body site or region of the body where the imaging study was performed.
+        expr: BODYSITE_CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '40983000'
+          - '8205005'
+          - '51185008'
+      - name: BODYSITE_DESCRIPTION
+        description: Description of the body site or region where the imaging study was performed.
+        expr: BODYSITE_DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Structure of region of internal part of mouth (body structure)
+          - Heart structure (body structure)
+          - Structure of upper extremity between shoulder and elbow (body structure)
+      - name: ENCOUNTER_ID
+        description: Unique identifier for a patient's visit or encounter, linking imaging studies to the specific healthcare encounter in which they were performed.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '41355159'
+          - '35529089'
+          - '41356154'
+      - name: ID
+        description: Unique identifier for each imaging study.
+        expr: ID
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - c3093d10-077c-6a4d-ed01-c2895c418576
+          - 8063d02c-068d-f177-22ca-165e0d896532
+          - bb0aa426-519a-a36a-ad8b-e9d8afa1f0d1
+      - name: IMAGING_ID
+        description: Unique identifier for an imaging study, used to track and manage medical imaging procedures such as X-rays, MRIs, and CT scans.
+        expr: IMAGING_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '68119144'
+          - '68132187'
+          - '68132229'
+      - name: INSTANCE_UID
+        description: Unique identifier for the imaging study instance, as defined by the Digital Imaging and Communications in Medicine (DICOM) standard.
+        expr: INSTANCE_UID
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - 1.2.840.99999999.1.182.98423827.1206522828380
+          - 1.2.840.99999999.1.217.24932315.1206522828380
+          - 1.2.840.99999999.1.25.58116250.1206522828380
+      - name: MODALITY_CODE
+        description: Type of imaging modality used to capture the study, where CR refers to Computed Radiography, CT refers to Computed Tomography, and DX refers to Digital X-ray.
+        expr: MODALITY_CODE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - CR
+          - CT
+          - DX
+      - name: MODALITY_DESCRIPTION
+        description: The type of imaging modality used t perform the study, such as Computed Tomography (CT) or Ultrasound.
+        expr: MODALITY_DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Computed Tomography
+          - Ultrasound
+      - name: PATIENT_ID
+        description: Unique identifier for the patient who underwent the imaging study.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1776816'
+          - '1558001'
+          - '1776780'
+      - name: PROCEDURE_CODE
+        description: Procedure code for imaging studies, such as radiology or diagnostic tests, as assigned by a standardized coding system (e.g. SNOMED CT), to identify the specific type of imaging procedure performed.
+        expr: PROCEDURE_CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '241046008'
+          - '713026007'
+          - '399208008'
+      - name: SERIES_UID
+        description: Unique identifier for a series of imaging studies, typically used to group related images together, such as those from the same imaging modality or procedure.
+        expr: SERIES_UID
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - 1.2.840.99999999.1.70679262.1692239578525
+          - 1.2.840.99999999.1.46422975.1553138192977
+          - 1.2.840.99999999.1.83818801.816232406231
+      - name: SOP_CODE
+        description: SOP Code (Standard Operating Procedure Code) for Imaging Studies, which identifies the type of imaging study or modality used, such as CT, MRI, or X-ray.
+        expr: SOP_CODE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - 1.2.840.10008.5.1.4.1.1.1.3
+          - 1.2.840.10008.5.1.4.1.1.2
+          - 1.2.840.10008.5.1.4.1.1.3.1
+      - name: SOP_DESCRIPTION
+        description: Type of imaging study or modality used to capture medical images, such as CT scans, digital X-rays, or intra-oral X-rays.
+        expr: SOP_DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - CT Image Storage
+          - Digital Intra-Oral X-Ray Image Storage - For Presentation
+          - Digital X-Ray Image Storage
+      - name: SYNTHEA_CITY
+        description: The city where the imaging study was performed.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - NASHVILLE
+          - SALT LAKE CITY
+          - WASHINGTON DC
+    time_dimensions:
+      - name: IMAGE_DATE
+        description: Date and time when the imaging study was performed.
+        expr: IMAGE_DATE
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2022-12-23T17:24:58.000+0000
+          - 2003-07-24T10:39:35.000+0000
+          - 2022-01-19T01:14:24.000+0000
+    primary_key:
+      columns:
+        - IMAGING_ID
+  - name: IMMUNIZATIONS
+    synonyms:
+      - Vaccinations
+      - Immunizations
+      - Shots
+      - Inoculations
+      - Vaccines
+      - Immunization Records
+      - Vaccination History
+      - Shot Records
+    description: This table stores information about immunizations administered to patients, including the date of immunization, patient and encounter details, immunization code and description, cost, and the city where the immunization was administered.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: IMMUNIZATIONS
+    dimensions:
+      - name: CODE
+        description: Immunization code, a unique identifier for a specific vaccine or immunization administered to a patient.
+        expr: CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '114'
+          - '3'
+          - '207'
+      - name: DESCRIPTION
+        description: Type of vaccine administered to the patient.
+        expr: DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - DTaP
+          - zoster vaccine  live
+          - Hep B  adolescent or pediatric
+      - name: ENCOUNTER
+        description: The ENCOUNTER column represents a unique identifier for a specific instance of a patient's interaction with a healthcare provider, such as a doctor's visit, hospital stay, or clinic appointment, during which an immunization was administered.
+        expr: ENCOUNTER
+        data_type: VARCHAR(16777216)
+      - name: ENCOUNTER_ID
+        description: Unique identifier for the patient's encounter or visit during which the immunization was administered.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '50376252'
+          - '29871314'
+          - '50403900'
+      - name: IMMUNIZATION_ID
+        description: Unique identifier for each immunization record.
+        expr: IMMUNIZATION_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '4826570'
+          - '1022039'
+          - '13383331'
+      - name: PATIENT
+        description: The name of the patient who received the immunization.
+        expr: PATIENT
+        data_type: VARCHAR(16777216)
+      - name: PATIENT_ID
+        description: Unique identifier for the patient who received the immunization.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1688764'
+          - '1306844'
+          - '1689078'
+      - name: SYNTHEA_CITY
+        description: The city where the patient received the immunization.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - DETROIT
+          - BOSTON
+          - WASHINGTON DC
+    time_dimensions:
+      - name: IMMUNIZATION_DATE
+        description: The date and time when the immunization was administered.
+        expr: IMMUNIZATION_DATE
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2020-03-24T18:50:36.000+0000
+          - 1984-03-17T11:50:30.000+0000
+          - 2022-01-30T06:51:20.000+0000
+    facts:
+      - name: BASE_COST
+        description: The base cost of a specific immunization, representing the standard price of the vaccine or immunization service before any discounts, insurance adjustments, or other financial considerations are applied.
+        expr: BASE_COST
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '136.00'
+    primary_key:
+      columns:
+        - IMMUNIZATION_ID
+  - name: MEDICATIONS
+    synonyms:
+      - medications
+      - prescriptions
+      - medicines
+      - treatments
+      - drugs
+      - pharmaceuticals
+      - meds
+    description: This table stores information about medications prescribed to patients, including the start and stop dates, patient and payer details, medication codes and descriptions, costs, and dispensing information.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: MEDICATIONS
+    dimensions:
+      - name: CODE
+        description: Unique identifier for a medication.
+        expr: CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1736854'
+          - '630208'
+          - '310798'
+      - name: DESCRIPTION
+        description: This column contains the description of the medication, including the name, strength, and dosage form, as well as any common brand names.
+        expr: DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Acetaminophen 325 MG Oral Tablet
+          - Hydrochlorothiazide 25 MG Oral Tablet
+          - Acetaminophen 325 MG Oral Tablet [Tylenol]
+      - name: ENCOUNTER_ID
+        description: Unique identifier for a patient's visit or encounter during which the medication was prescribed or administered.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '8941700'
+          - '25081197'
+          - '49080191'
+      - name: MEDICATION_ID
+        description: Unique identifier for a medication in the system.
+        expr: MEDICATION_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '23433815'
+          - '23433659'
+          - '23433881'
+      - name: PATIENT_ID
+        description: Unique identifier for the patient receiving the medication.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '2129541'
+          - '2104704'
+          - '2104714'
+      - name: PAYER_ID
+        description: Unique identifier for the insurance provider or payer responsible for reimbursing the medication costs.
+        expr: PAYER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1000049'
+          - '1000107'
+          - '1000095'
+      - name: REASONCODE
+        description: Reason for medication or treatment.
+        expr: REASONCODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '424132000'
+          - '59621000'
+          - '88805009'
+      - name: REASONDESCRIPTION
+        description: The reason or medical condition for which a medication is prescribed.
+        expr: REASONDESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Prediabetes
+          - Osteoporosis (disorder)
+          - Essential hypertension (disorder)
+      - name: SYNTHEA_CITY
+        description: The city where the patient received the medication.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - SAN FRANCISCO
+          - BOSTON
+          - CLEVELAND
+    time_dimensions:
+      - name: MED_START
+        description: Date and time when the medication was started.
+        expr: MED_START
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2022-11-08T08:48:42.000+0000
+          - 2023-10-06T11:27:52.000+0000
+          - 2006-10-13T16:52:02.000+0000
+      - name: MED_STOP
+        description: Date and time when the medication was stopped.
+        expr: MED_STOP
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2007-07-06T16:52:08.000+0000
+          - 2005-09-16T20:39:08.000+0000
+          - 2022-06-10T16:52:08.000+0000
+    facts:
+      - name: BASE_COST
+        description: The base cost of a medication, representing the standard price of the medication before any discounts or adjustments are applied.
+        expr: BASE_COST
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '1.13'
+          - '3.76'
+          - '1.47'
+      - name: DISPENSES
+        description: The number of times a medication was dispensed to a patient.
+        expr: DISPENSES
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '4'
+          - '1'
+          - '12'
+      - name: PAYER_COVERAGE
+        description: The amount of payment covered by the patient's insurance provider for a specific medication.
+        expr: PAYER_COVERAGE
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '33.19'
+          - '115.16'
+          - '11.98'
+      - name: TOTALCOST
+        description: The total cost of the medication.
+        expr: TOTALCOST
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '15279.96'
+          - '2450.43'
+          - '9.84'
+    primary_key:
+      columns:
+        - MEDICATION_ID
+  - name: OBSERVATIONS
+    synonyms:
+      - Observations
+      - Findings
+      - Measurements
+      - Readings
+      - Records
+      - Data Points
+      - Results
+      - Outcomes
+      - Assessments
+      - Evaluations
+    description: This table stores medical observation data for patients, including the date of observation, patient and encounter identifiers, and details about the observation itself, such as the category, code, description, value, units, and type, as well as the city where the observation was made.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: OBSERVATIONS
+    dimensions:
+      - name: CATEGORY
+        description: 'The category of observation, which can be one of the following: social-history (information about the patient''s lifestyle and personal history), vital-signs (measurements of the patient''s basic bodily functions), or survey (information collected through a questionnaire or survey).'
+        expr: CATEGORY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - social-history
+          - vital-signs
+          - survey
+      - name: CODE
+        description: LOINC Code
+        expr: CODE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - 1742-6
+          - 6768-6
+          - 5770-3
+      - name: DESCRIPTION
+        description: This column contains the names of various medical observations or measurements, such as blood pressure, lung function, and substance abuse screening scores, that are being recorded or tracked.
+        expr: DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Systolic Blood Pressure
+          - FEV1/FVC
+          - Total score [DAST-10]
+      - name: ENCOUNTER_ID
+        description: Unique identifier for a patient's visit or encounter.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '33118837'
+          - '33118671'
+          - '33118765'
+      - name: OBSERVATION_ID
+        description: A unique identifier for each observation or measurement recorded in the system.
+        expr: OBSERVATION_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '189924716'
+          - '189924701'
+          - '618070561'
+      - name: PATIENT_ID
+        description: Unique identifier for the patient being observed.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1081694'
+          - '1081680'
+          - '1081700'
+      - name: SYNTHEA_CITY
+        description: The city where the observation was made.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - BOSTON
+          - CHICAGO
+          - CLEVELAND
+      - name: TYPE
+        description: The type of observation made, represented by a numeric code.
+        expr: TYPE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - numeric
+          - 'n'
+      - name: UNITS
+        description: The unit of measurement for the observation value, indicating the standard unit used to express the result, such as pH for acidity levels, mm[Hg] for blood pressure, or mL/min/{1.73_m2} for glomerular filtration rate.
+        expr: UNITS
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - pH
+          - mm[Hg]
+          - mL/min/{1.73_m2}
+      - name: VALUE
+        description: The VALUE column stores the result of a specific observation or measurement, which can be a qualitative finding (e.g. Urine ketone test = +++), a numerical value (e.g. 6.8, 8.6), or other types of data, providing a detailed description of the observation made.
+        expr: VALUE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Urine ketone test = +++ (finding)
+          - '6.8'
+          - '8.6'
+    time_dimensions:
+      - name: OBSERVATION_DATE
+        description: Date and time when the observation was made.
+        expr: OBSERVATION_DATE
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2023-10-12T09:35:38.000+0000
+          - 2021-09-22T10:18:16.000+0000
+          - 2009-01-07T04:21:44.000+0000
+    primary_key:
+      columns:
+        - OBSERVATION_ID
+  - name: ORGANIZATIONS
+    synonyms:
+      - companies
+      - firms
+      - corporations
+      - businesses
+      - institutions
+      - establishments
+      - entities
+      - organizations
+      - enterprises
+    description: This table stores information about various organizations, including their identification, location details, contact information, and financial metrics.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: ORGANIZATIONS
+    dimensions:
+      - name: ADDRESS
+        description: The physical location of the organization.
+        expr: ADDRESS
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - 5001 MAYFIELD RD  SUITE 105
+          - 4120 INTERCHANGE CORPORATE CENTER ROAD
+          - 4401 ROCKSIDE RD  SUITE 214
+      - name: CITY
+        description: The city where the organization is located.
+        expr: CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - BEACHWOOD
+          - LYNDHURST
+          - PEPPER PIKE
+      - name: LAT
+        description: Latitude of the organization's location.
+        expr: LAT
+        data_type: NUMBER(38,15)
+        sample_values:
+          - '41.315786950000000'
+          - '41.421363200000000'
+          - '30.409738000000000'
+      - name: LON
+        description: Longitude of the organization's location.
+        expr: LON
+        data_type: NUMBER(38,14)
+        sample_values:
+          - '-81.47021433333333'
+          - '-81.52931709090909'
+          - '-71.10138604984385'
+      - name: NAME
+        description: The column "name" in the ORGANIZATIONS table contains the names of various healthcare organizations, including nursing homes, hospitals, and home health agencies.
+        expr: NAME
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - PLEASANT LAKE NURSING HOME  INC.
+          - PARMA COMMUNITY GENERAL HOSPITAL ASSOCIATION
+          - ALPHA HOME HEALTH AGENCY LLC
+      - name: ORGANIZATION_ID
+        description: Unique identifier for an organization.
+        expr: ORGANIZATION_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1000202'
+          - '1000201'
+          - '1000446'
+      - name: PHONE
+        description: The phone number associated with each organization.
+        expr: PHONE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - '6158469524'
+          - '4049169693'
+          - '2162950056'
+      - name: STATE
+        description: The two-letter abbreviation for the state in which the organization is located.
+        expr: STATE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - TX
+          - OH
+          - MA
+      - name: SYNTHEA_CITY
+        description: The city where the organization is located.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - CLEVELAND
+          - BOSTON
+          - AUSTIN
+      - name: ZIP
+        description: The ZIP column contains the unique zip codes associated with each organization, providing a geographical identifier for their location.
+        expr: ZIP
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '441371806'
+          - '441472827'
+          - '441064645'
+    facts:
+      - name: REVENUE
+        description: The total amount of income generated by an organization from its normal business activities, typically calculated by multiplying the number of units sold by the price per unit, before deducting any costs or expenses.
+        expr: REVENUE
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '0'
+      - name: UTILIZATION
+        description: The total amount of resources, such as time, materials, or capacity, used by an organization to achieve its goals and objectives.
+        expr: UTILIZATION
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '15161'
+          - '21712'
+          - '308489'
+    unique_keys:
+      - columns:
+          - ORGANIZATION_ID
+  - name: PATIENTS
+    synonyms:
+      - Individuals
+      - People
+      - Persons
+      - Patients List
+      - Clientele
+      - Customer Base
+      - Demographics
+      - Population
+      - Residents
+    description: This table stores demographic and socioeconomic information about patients, including their personal details, contact information, and financial data related to healthcare expenses and income.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: PATIENTS
+    dimensions:
+      - name: ADDRESS
+        description: The physical location where a patient resides, including street address, apartment or suite number, and other relevant details.
+        expr: ADDRESS
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - 194 D'Amore Estate Unit 29
+          - 698 Lemke Lane Suite 39
+          - 1021 Dooley Extension Unit 63
+      - name: BIRTHPLACE
+        description: The city, state, and country where the patient was born.
+        expr: BIRTHPLACE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Moorpark  California  US
+          - Toronto  Ohio  US
+          - Malinta  Ohio  US
+      - name: CITY
+        description: The city where the patient resides.
+        expr: CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Tampa
+          - Detroit
+          - Cleveland
+      - name: COUNTY
+        description: The county where the patient resides.
+        expr: COUNTY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - San Francisco County
+          - Hays County
+          - Allegheny County
+      - name: DRIVERS
+        description: Unique identifier for the driver or operator of a vehicle involved in a crash.
+        expr: DRIVERS
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - S99943047
+          - S99931304
+          - S99978380
+      - name: ETHNICITY
+        description: The patient's ethnic identity, categorized as either non-Hispanic or Hispanic.
+        expr: ETHNICITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - nonhispanic
+          - hispanic
+      - name: FIPS
+        description: Federal Information Processing Standard (FIPS) code, a unique five-digit code assigned to each county in the United States, used to identify the patient's county of residence.
+        expr: FIPS
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '25017'
+          - '25025'
+          - '39035'
+      - name: FIRST
+        description: The first name of the patient.
+        expr: FIRST
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Bennie
+          - Bryanna
+          - Lora
+      - name: GENDER
+        description: The gender of the patient, either Male (M) or Female (F).
+        expr: GENDER
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - M
+          - F
+      - name: LAST
+        description: Therapist's last name.
+        expr: LAST
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Herrera
+          - Zieme
+          - Calderón
+      - name: LAT
+        description: Latitude of the patient's location.
+        expr: LAT
+        data_type: NUMBER(38,15)
+        sample_values:
+          - '42.358523549948680'
+          - '42.324703256981890'
+          - '42.399925634202290'
+      - name: LON
+        description: Longitude of the patient's location.
+        expr: LON
+        data_type: NUMBER(38,14)
+        sample_values:
+          - '-81.68437510631077'
+          - '-81.63202568364530'
+          - '-81.59129194086566'
+      - name: MAIDEN
+        description: TThe maiden name of the patient, which is the surname a woman had before she was married.
+        expr: MAIDEN
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Arroyo
+          - Calderón
+          - Pacheco
+      - name: MARITAL
+        description: Th patient's marital status, indicating whether they are divorced (D) or single (S).
+        expr: MARITAL
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - D
+          - S
+      - name: MIDDLE
+        description: The middle name of the patient.
+        expr: MIDDLE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Regan
+          - Clementine
+          - Mirella
+      - name: PASSPORT
+        description: Unique identifier for a patient, typically a passport number, used to distiniguish and track individual patients within the healthcare system.
+        expr: PASSPORT
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - X6087444X
+          - X44603987X
+          - X72729525X
+      - name: PATIENT_ID
+        description: Unique identifier assigned to each patient in the healthcare system.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1648351'
+          - '1322378'
+          - '1015830'
+      - name: PREFIX
+        description: A title or honorific used to address a patient, suc as "Mrs." or "Ms.", indicating their marital status or preferred form of address.
+        expr: PREFIX
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Mrs.
+          - Ms.
+      - name: RACE
+        description: The patient's racial or ethnic identity, categorized as Hawaiian, White, or Black.
+        expr: RACE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - hawaiian
+          - white
+          - black
+      - name: SSN
+        description: Unique identifier for each patient in the format of a Social Securiy Number (SSN), used to distinguish and track individual patients within the healthcare system.
+        expr: SSN
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - 999-55-4381
+          - 999-42-5291
+          - 999-25-2708
+      - name: STATE
+        description: The state where the patient resides.
+        expr: STATE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Pennsylvania
+          - Utah
+          - Ohio
+      - name: SUFFIX
+        description: A title or honorific suffix that denotes a patient's academic or professional credentials, such as a doctoral degree or medical license.
+        expr: SUFFIX
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - PhD
+          - MD
+      - name: SYNTHEA_CITY
+        description: The city where the patient resides.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - DETROIT
+          - SAN FRANCISCO
+          - PITTSBURGH
+      - name: ZIP
+        description: The ZIP column represents the postal zip code of the patient's residence, indicating the geographic location where the patient lives.
+        expr: ZIP
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '60633'
+          - '20052'
+          - '94107'
+    time_dimensions:
+      - name: BIRTHDATE
+        description: Date of birth of the patient.
+        expr: BIRTHDATE
+        data_type: DATE
+        sample_values:
+          - '2020-09-26'
+          - '2011-10-03'
+          - '1985-09-19'
+      - name: DEATHDATE
+        description: Date of death for the patient, if applicable.
+        expr: DEATHDATE
+        data_type: DATE
+        sample_values:
+          - '2024-01-30'
+          - '2023-01-21'
+          - '1999-01-30'
+    facts:
+      - name: HEALTHCARE_COVERAGE
+        description: The total amount of healthcare coverage or insurance benefits provided to a patient.
+        expr: HEALTHCARE_COVERAGE
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '680447.97'
+          - '21224.42'
+          - '208050.46'
+      - name: HEALTHCARE_EXPENSES
+        description: Total amount spent on healthcare services for each patient.
+        expr: HEALTHCARE_EXPENSES
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '1243324.96'
+          - '1386334.57'
+          - '59375.27'
+      - name: INCOME
+        description: Annual income of the patient, representing their total earnings from all sources before taxes and deductions.
+        expr: INCOME
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '10000'
+          - '14145'
+          - '42330'
+    primary_key:
+      columns:
+        - PATIENT_ID
+  - name: PAYERS
+    synonyms:
+      - payer
+      - payor
+      - health_insurer
+      - insurance_provider
+      - healthcare_payer
+      - insurance_company
+      - health_plan_provider
+      - medicaire_provider
+      - medical_insurer
+    description: This table stores information about healthcare payers, including their demographic details, financial data, and performance metrics related to healthcare coverage and quality of life (QOL) scores.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: PAYERS
+    dimensions:
+      - name: CITY
+        synonyms:
+          - town
+          - municipality
+          - urban_area
+          - metropolis
+          - location
+          - urban_center
+          - populated_area
+          - settlement
+        description: The city where the payer is located.
+        expr: CITY
+        data_type: VARCHAR(16777216)
+        cortex_search_service:
+          database: SYNTHEA
+          schema: SYNTHEA
+          service: _CORTEX_ANALYST_PAYERS_CITY_90530978_10FE_4E52_8D36_F3AE75084214
+      - name: NAME
+        synonyms:
+          - payer_name
+          - company_name
+          - organization_name
+          - insurer_name
+          - provider_name
+          - entity_name
+        description: The type of government-funded health insurance program that covers the patient's medical expenses.
+        expr: NAME
+        data_type: VARCHAR(16777216)
+        cortex_search_service:
+          database: SYNTHEA
+          schema: SYNTHEA
+          service: _CORTEX_ANALYST_PAYERS_NAME_598753F0_DA5F_44D9_83C7_BC083A4D2820
+        sample_values:
+          - Dual Eligible
+          - Medicaid
+          - Medicare
+      - name: PAYER_ID
+        synonyms:
+          - payer_identifier
+          - insurance_provider_id
+          - health_insurer_id
+          - payer_code
+          - insurance_company_id
+          - health_plan_id
+        description: Unique identifier for a payer, which is typically an insurance company or other entity responsible for reimbursing healthcare providers for services rendered.
+        expr: PAYER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1000001'
+          - '1000002'
+          - '1000092'
+      - name: STATE_HEADQUARTERED
+        synonyms:
+          - headquartered_state
+          - state_of_headquarters
+          - home_state
+          - state_location
+          - state_of_operation
+          - state_of_registration
+          - state_of_incorporation
+          - state_of_business
+        description: Indicates whether the payer is headquartered in the same state as the patient's state of residence.
+        expr: STATE_HEADQUARTERED
+        data_type: VARCHAR(16777216)
+        cortex_search_service:
+          database: SYNTHEA
+          schema: SYNTHEA
+          service: _CORTEX_ANALYST_PAYERS_STATE_HEADQUARTERED_CD305566_4B38_4441_A9AF_C621607A6A9F
+    facts:
+      - name: AMOUNT_COVERED
+        synonyms:
+          - covered_amount
+          - total_covered
+          - amount_paid
+          - reimbursed_amount
+          - covered_expenses
+          - paid_claims
+        description: The total amount of medical expenses covered by the payer for a specific claim or set of claims.
+        expr: AMOUNT_COVERED
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '20624591128.69'
+          - '2701943029.35'
+          - '7506167186.16'
+      - name: AMOUNT_UNCOVERED
+        synonyms:
+          - uninsured_amount
+          - uncovered_expenses
+          - non_covered_amount
+          - amount_not_covered
+          - unreimbursed_amount
+          - out_of_pocket_costs
+        description: The total amount of medical expenses that are not covered by insurance for a specific payer.
+        expr: AMOUNT_UNCOVERED
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '499013804.50'
+          - '3130376268.22'
+          - '1743702849.19'
+      - name: MEMBER_MONTHS
+        synonyms:
+          - total_member_months
+          - member_duration
+          - months_with_member
+          - member_tenure
+          - total_months_enrolled
+        description: The total number of months that members have been enrolled with the payer.
+        expr: MEMBER_MONTHS
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '1008684'
+          - '5193768'
+          - '108916092'
+      - name: REVENUE
+        synonyms:
+          - income
+          - earnings
+          - turnover
+          - sales
+          - profit
+          - receipts
+          - gains
+          - proceeds
+          - total_income
+          - annual_revenue
+        description: The total amount of income earned by the company from its normal business operations, typically through the sale of goods or services, before any expenses or taxes are deducted.
+        expr: REVENUE
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '1010131174.29'
+          - '1116488064.45'
+          - '1069758300.00'
+    primary_key:
+      columns:
+        - PAYER_ID
+  - name: PAYER_TRANSITIONS
+    synonyms:
+      - payer_transitions
+      - patient_payer_history
+      - insurance_transitions
+      - payer_changes
+      - patient_coverage_history
+      - insurance_provider_transitions
+      - coverage_transitions
+      - patient_payer_updates
+    description: This table stores information about changes in a patient's health insurance coverage over time, including the patient's identifier, the start and end dates of each coverage period, the primary and secondary payer (insurance provider) IDs, and details about the owner of the insurance plan, including the type of ownership and the owner's name, as well as the city where the insurance plan is registered.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: PAYER_TRANSITIONS
+    dimensions:
+      - name: MEMBER_ID
+        description: Unique identifier for the member who underwent a transition in their payer status.
+        expr: MEMBER_ID
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - dfce089a-497f-5621-0680-96045467ad9b
+          - 6a92cfc2-3794-0a5a-322d-6430409d0b0d
+          - 58e2ac00-cb97-19af-2d1d-03eb29fd94a4
+      - name: OWNER_NAME
+        description: The name of the owner associated with a payer transition.
+        expr: OWNER_NAME
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Shantell Raina Gorczany
+          - Mr. Leannon
+          - Mr. Gorczany
+      - name: OWNERSHIP_TYPE
+        description: The type of ownership for the payer, indicating whether the payer is the individual themselves (Self) or their spouse (Spouse).
+        expr: OWNERSHIP_TYPE
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Self
+          - Spouse
+      - name: PATIENT_ID
+        description: Unique identifier for the patient associated with the payer transition.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1371497'
+          - '1371489'
+          - '1371496'
+      - name: PAYER_ID
+        description: Unique identifier for the payer, which is typically an insurance company or other entity responsible for reimbursing healthcare providers for services rendered.
+        expr: PAYER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1000053'
+          - '1000029'
+          - '1000040'
+      - name: PAYER_TRANSITIONS_ID
+        description: Unique identifier for a payer transition event, which represents a change in the payer or payment arrangement for a patient's healthcare services.
+        expr: PAYER_TRANSITIONS_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1103185'
+          - '1103250'
+          - '1020975'
+      - name: SECONDARY_PAYER_ID
+        description: The identifier of the secondary payer responsible for a portion of the healthcare claim costs.
+        expr: SECONDARY_PAYER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1000035'
+          - '1000028'
+      - name: SYNTHEA_CITY
+        description: The city where the patient received care.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - MIAMI
+          - BOSTON
+          - CHICAGO
+    time_dimensions:
+      - name: END_YEAR
+        description: The date and time when a payer's transition ended.
+        expr: END_YEAR
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2024-12-24T10:12:17.000+0000
+          - 2022-05-12T08:45:11.000+0000
+          - 2024-11-05T20:30:53.000+0000
+      - name: START_YEAR
+        description: The date and time when a payer transition occurred, marking the beginning of a new period of payment activity.
+        expr: START_YEAR
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2022-11-06T07:26:38.000+0000
+          - 2022-05-12T08:45:11.000+0000
+          - 2019-05-11T10:36:23.000+0000
+    primary_key:
+      columns:
+        - PAYER_TRANSITIONS_ID
+  - name: PROCEDURES
+    synonyms:
+      - procedures
+      - medical_procedures
+      - surgical_procedures
+      - patient_procedures
+      - medical_services
+      - healthcare_procedures
+      - clinical_procedures
+      - treatment_procedures
+      - medical_interventions
+    description: This table stores information about medical procedures performed on patients, including the start and stop times, patient and encounter identifiers, procedure codes and descriptions, costs, and reason codes and descriptions, as well as the city where the procedure was performed.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: PROCEDURES
+    dimensions:
+      - name: CODE
+        description: Procedure code as per the SNOMED CT ontology.
+        expr: CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '167271000'
+          - '713106006'
+          - '73761001'
+      - name: DESCRIPTION
+        description: This column contains the names of various medical and dental procedures, providing a description of the specific treatment or examination performed on a patient.
+        expr: DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Examination of gingivae (procedure)
+          - Removal of subgingival plaque and calculus from all teeth using dental instrument (procedure)
+          - Depression screening
+      - name: ENCOUNTER_ID
+        description: A unique identifier for a patient's visit or encounter, used to track and manage the patient's care and treatment during a specific period.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '4655610'
+          - '4655538'
+          - '21362957'
+      - name: PATIENT_ID
+        description: Unique identifier for the patient undergoing the procedure.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '2387334'
+          - '2190529'
+          - '1582748'
+      - name: PROCEDURE_ID
+        description: Unique identifier for a medical procedure performed on a patient.
+        expr: PROCEDURE_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '123121445'
+          - '123121534'
+          - '123121592'
+      - name: REASONCODE
+        description: Reason for proceudre or treatment.
+        expr: REASONCODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '46177005'
+          - '254837009'
+          - '109570002'
+      - name: REASONDESCRIPTION
+        description: This column captures the reason or description for a medical procedure, providing a detailed explanation of the underlying condition or diagnosis that necessitated the procedure.
+        expr: REASONDESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Pulmonary emphysema (disorder)
+          - End-stage renal disease (disorder)
+      - name: SYNTHEA_CITY
+        description: The city where the medical procedure was performed.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - AUSTIN
+          - SAN FRANCISCO
+          - CLEVELAND
+    time_dimensions:
+      - name: PROC_START
+        description: The date and time when a procedure was started.
+        expr: PROC_START
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2022-07-09T04:48:57.000+0000
+          - 2023-05-07T09:51:06.000+0000
+          - 1995-10-03T08:39:02.000+0000
+      - name: PROC_STOP
+        description: Date and time when a procedure was stopped.
+        expr: PROC_STOP
+        data_type: TIMESTAMP_NTZ(9)
+        sample_values:
+          - 2021-06-01T23:30:43.000+0000
+          - 2021-12-26T10:16:03.000+0000
+          - 2022-03-04T09:52:17.000+0000
+    facts:
+      - name: BASE_COST
+        description: The base cost of a medical procedure, representing the standard or average cost of the procedure without any additional fees or expenses.
+        expr: BASE_COST
+        data_type: NUMBER(38,2)
+        access_modifier: public_access
+        sample_values:
+          - '396.35'
+          - '615.85'
+          - '803.96'
+    primary_key:
+      columns:
+        - PROCEDURE_ID
+  - name: PROVIDERS
+    synonyms:
+      - suppliers
+      - vendors
+      - healthcare providers
+      - medical providers
+      - practitioners
+      - caregivers
+      - medical staff
+      - healthcare professionals
+      - medical vendors
+    description: This table stores information about healthcare providers, including their demographic details, practice location, and aggregate data on their patient encounters and procedures.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: PROVIDERS
+    dimensions:
+      - name: ADDRESS
+        synonyms:
+          - location
+          - street_address
+          - mailing_address
+          - residence
+          - physical_address
+          - mailing_location
+          - street
+          - physical_location
+        description: The physical location of the provider, including street address, city, state, and zip code.
+        expr: ADDRESS
+        data_type: VARCHAR(16777216)
+      - name: CITY
+        synonyms:
+          - town
+          - municipality
+          - metropolis
+          - urban_area
+          - locality
+          - settlement
+          - burg
+          - municipality_name
+        description: The city where the provider is located.
+        expr: CITY
+        data_type: VARCHAR(16777216)
+        cortex_search_service:
+          database: SYNTHEA
+          schema: SYNTHEA
+          service: _CORTEX_ANALYST_PROVIDERS_CITY_656FD99B_A747_4A74_8C7A_73C755C033F7
+        sample_values:
+          - LYNDHURST
+          - MIDDLEBURG HEIGHTS
+          - BEACHWOOD
+      - name: GENDER
+        synonyms:
+          - sex
+          - male_female
+          - demographic
+          - biological_sex
+          - personal_gender
+        description: The gender of the healthcare provider.
+        expr: GENDER
+        data_type: VARCHAR(16777216)
+      - name: LAT
+        synonyms:
+          - latitude
+          - lat_coordinate
+          - geographic_latitude
+          - latitude_value
+          - lat_position
+        description: Latitude of the provider's location.
+        expr: LAT
+        data_type: NUMBER(38,15)
+      - name: LON
+        synonyms:
+          - longitude
+          - long
+          - easting
+          - east-west coordinate
+          - geographic longitude
+        description: Longitude coordinate of the provider's location.
+        expr: LON
+        data_type: NUMBER(38,14)
+      - name: NAME
+        synonyms:
+          - full_name
+          - provider_name
+          - doctor_name
+          - physician_name
+          - practitioner_name
+          - title
+        description: The name of the healthcare provider.
+        expr: NAME
+        data_type: VARCHAR(16777216)
+        cortex_search_service:
+          database: SYNTHEA
+          schema: SYNTHEA
+          service: _CORTEX_ANALYST_PROVIDERS_NAME_5BD13F2F_EDC8_4E7C_A717_76142DD2D6ED
+        sample_values:
+          - Berry Hane
+          - Sun Kulas
+          - Grover Jaskolski
+      - name: ORGANIZATION_ID
+        synonyms:
+          - org_id
+          - company_id
+          - institution_id
+          - facility_id
+          - provider_org_id
+          - business_id
+          - entity_id
+        description: Unique identifier for the organization that the provider is affiliated with.
+        expr: ORGANIZATION_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1000202'
+          - '1000201'
+          - '1000446'
+      - name: PROVIDER_ID
+        synonyms:
+          - provider_key
+          - supplier_id
+          - practitioner_id
+          - caregiver_id
+          - healthcare_provider_id
+          - medical_provider_id
+          - doctor_id
+          - practitioner_key
+        description: Unique identifier for a healthcare provider.
+        expr: PROVIDER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '3057436'
+          - '3057302'
+          - '3057363'
+      - name: SPECIALITY
+        synonyms:
+          - field_of_expertise
+          - area_of_specialization
+          - medical_specialty
+          - profession
+          - occupation
+          - field_of_practice
+          - area_of_focus
+          - discipline
+        description: The type of medical specialty or area of expertise of the healthcare provider.
+        expr: SPECIALITY
+        data_type: VARCHAR(16777216)
+        cortex_search_service:
+          database: SYNTHEA
+          schema: SYNTHEA
+          service: _CORTEX_ANALYST_PROVIDERS_SPECIALITY_BE36E256_39BA_4564_A92D_9C48C9CCBD1A
+        sample_values:
+          - GENERAL PRACTICE
+      - name: STATE
+        synonyms:
+          - province
+          - region
+          - territory
+          - county
+          - area
+          - location
+          - jurisdiction
+          - governance_area
+          - administrative_division
+        description: The two-letter code representing the state in which the provider is located.
+        expr: STATE
+        data_type: VARCHAR(16777216)
+        cortex_search_service:
+          database: SYNTHEA
+          schema: SYNTHEA
+          service: _CORTEX_ANALYST_PROVIDERS_STATE_99E60036_AEA9_4D5B_A759_17DACB9BEC0F
+        sample_values:
+          - TX
+          - MA
+          - OH
+      - name: SYNTHEA_CITY
+        synonyms:
+          - synthetic_city
+          - artificial_city
+          - simulated_city
+          - mock_city
+          - virtual_city
+          - fake_city
+          - dummy_city
+          - test_city
+        description: The city where the provider is located.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+      - name: ZIP
+        synonyms:
+          - postal_code
+          - postcode
+          - zip_code
+          - zip_number
+          - geographic_zip
+        description: The five-digit or nine-digit postal code for the provider's location.
+        expr: ZIP
+        data_type: NUMBER(38,0)
+    facts:
+      - name: ENCOUNTERS
+        synonyms:
+          - patient_visits
+          - interactions
+          - consultations
+          - patient_interactions
+          - visits
+          - admissions
+        description: The number of patient encounters or visits a healthcare provider has had.
+        expr: ENCOUNTERS
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '15161'
+          - '21712'
+          - '308489'
+      - name: PROCEDURES
+        synonyms:
+          - medical_procedures
+          - treatments
+          - surgeries
+          - interventions
+          - medical_interventions
+          - healthcare_procedures
+          - clinical_procedures
+          - therapeutic_procedures
+        description: The total number of medical procedures performed by the provider.
+        expr: PROCEDURES
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '0'
+    primary_key:
+      columns:
+        - PROVIDER_ID
+  - name: SUPPLIES
+    synonyms:
+      - supplies
+      - inventory
+      - stock
+      - provisions
+      - materials
+      - goods
+      - resources
+      - stockpile
+    description: This table stores information about medical supplies provided to patients during healthcare encounters, including the date of supply, patient and encounter details, supply code and description, quantity provided, and the city where the supply was synthesized or manufactured.
+    base_table:
+      database: SYNTHEA
+      schema: SYNTHEA
+      table: SUPPLIES
+    dimensions:
+      - name: CODE
+        synonyms:
+          - id
+          - identifier
+          - supply_code
+          - item_code
+          - product_code
+          - material_number
+        description: Unique identifier for a specific supply item.
+        expr: CODE
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '468277001'
+          - '469673003'
+          - '1230220004'
+      - name: DESCRIPTION
+        synonyms:
+          - details
+          - explanation
+          - note
+          - comments
+          - remarks
+          - narrative
+          - summary
+          - account
+          - depiction
+        description: A text field that captures the description of a medical supply item, including its form, substance, or physical characteristics.
+        expr: DESCRIPTION
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - Conventional release periodontal gel (dose form)
+          - Alcohol disinfectant (substance)
+          - Antiseptic towelette (physical object)
+      - name: ENCOUNTER_ID
+        synonyms:
+          - visit_id
+          - patient_visit_number
+          - encounter_number
+          - patient_encounter_id
+          - visit_number
+          - admission_id
+        description: Unique identifier for a patient encounter, representing a single visit or interaction between a patient and a healthcare provider.
+        expr: ENCOUNTER_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '45420552'
+          - '44948279'
+          - '45419189'
+      - name: PATIENT_ID
+        synonyms:
+          - patient_number
+          - person_id
+          - individual_id
+          - subject_id
+          - medical_record_number
+          - patient_identifier
+        description: Unique identifier for a patient in the healthcare system.
+        expr: PATIENT_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1450450'
+          - '1450881'
+          - '1450434'
+      - name: SUPPLY_ID
+        synonyms:
+          - supply_key
+          - item_id
+          - material_number
+          - stock_id
+          - inventory_id
+          - resource_identifier
+        description: Unique identifier for a supply item.
+        expr: SUPPLY_ID
+        data_type: NUMBER(38,0)
+        sample_values:
+          - '1052316'
+          - '1052389'
+          - '1081193'
+      - name: SYNTHEA_CITY
+        synonyms:
+          - city_name
+          - municipality
+          - urban_area
+          - metropolitan_area
+          - city_location
+          - geographic_city
+          - city_designation
+        description: The city where the supplier is located.
+        expr: SYNTHEA_CITY
+        data_type: VARCHAR(16777216)
+        sample_values:
+          - CHICAGO
+          - PITTSBURGH
+          - WASHINGTON DC
+    time_dimensions:
+      - name: SUPPLY_DATE
+        synonyms:
+          - delivery_date
+          - provision_date
+          - restock_date
+          - replenishment_date
+          - inventory_date
+          - stock_date
+        description: The date on which the supply was received or delivered.
+        expr: SUPPLY_DATE
+        data_type: DATE
+        sample_values:
+          - '1982-03-31'
+          - '2021-07-24'
+          - '1983-02-04'
+    facts:
+      - name: QUANTITY
+        synonyms:
+          - amount
+          - count
+          - volume
+          - total
+          - number
+          - stock_level
+          - inventory_level
+          - supply_amount
+        description: The quantity of supplies on hand.
+        expr: QUANTITY
+        data_type: NUMBER(38,0)
+        access_modifier: public_access
+        sample_values:
+          - '50'
+          - '5'
+          - '1'
+    primary_key:
+      columns:
+        - SUPPLY_ID
+relationships:
+  - name: ENCOUNTER_ALLERGIES
+    left_table: ALLERGIES
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: PATIENTS_ALLERGIES
+    left_table: ALLERGIES
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: ENCOUNTER_CAREPLANS
+    left_table: CARE_PLANS
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: PATIENTS_CAREPLANS
+    left_table: CARE_PLANS
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: CLAIMS_ENCOUNTERS
+    left_table: CLAIMS
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: CLAIMS_PATIENTS
+    left_table: CLAIMS
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: CLAIMS_PRIMARY_PAYERS
+    left_table: CLAIMS
+    right_table: PAYERS
+    relationship_columns:
+      - left_column: PRIMARY_PATIENT_INSURANCE_ID
+        right_column: PAYER_ID
+  - name: CLAIMS_PROVIDERS
+    left_table: CLAIMS
+    right_table: PROVIDERS
+    relationship_columns:
+      - left_column: PROVIDER_ID
+        right_column: PROVIDER_ID
+    relationship_type: many_to_one
+    join_type: left_outer
+  - name: CLAIMS_REFERRING_PROVIDERS
+    left_table: CLAIMS
+    right_table: PROVIDERS
+    relationship_columns:
+      - left_column: SUPERVISING_PROVIDER_ID
+        right_column: PROVIDER_ID
+  - name: CLAIMS_SECONDARY_PAYERS
+    left_table: CLAIMS
+    right_table: PAYERS
+    relationship_columns:
+      - left_column: SECONDARY_PATIENT_INSURANCE_ID
+        right_column: PAYER_ID
+  - name: CLAIMS_CLAIMS_TRANSACTIONS
+    left_table: CLAIMS_TX
+    right_table: CLAIMS
+    relationship_columns:
+      - left_column: CLAIM_ID
+        right_column: CLAIM_ID
+  - name: CLAIMS_TX_ORGANIZATIONS
+    left_table: CLAIMS_TX
+    right_table: ORGANIZATIONS
+    relationship_columns:
+      - left_column: PLACE_OF_SERVICE_ID
+        right_column: ORGANIZATION_ID
+  - name: ENCOUNTERS_CLAIMS_TXN
+    left_table: CLAIMS_TX
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: ORGANIZATIONS_CLAIMS_TRANSACTIONS
+    left_table: CLAIMS_TX
+    right_table: ORGANIZATIONS
+    relationship_columns:
+      - left_column: PLACE_OF_SERVICE_ID
+        right_column: ORGANIZATION_ID
+  - name: PATIENT_CLAIMS_TRANSACTIONS
+    left_table: CLAIMS_TX
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: PROVIDERS_CLAIMS_TXN
+    left_table: CLAIMS_TX
+    right_table: PROVIDERS
+    relationship_columns:
+      - left_column: PROVIDER_ID
+        right_column: PROVIDER_ID
+  - name: SUPERVISING_PROVIDERS_CLAIMS_TXN
+    left_table: CLAIMS_TX
+    right_table: PROVIDERS
+    relationship_columns:
+      - left_column: SUPERVISING_PROVIDER_ID
+        right_column: PROVIDER_ID
+  - name: SUPERVISING_PROVIDER_CLAIMS_TX
+    left_table: CLAIMS_TX
+    right_table: PROVIDERS
+    relationship_columns:
+      - left_column: SUPERVISING_PROVIDER_ID
+        right_column: PROVIDER_ID
+  - name: ENCOUNTERS_CONDITIONS
+    left_table: CONDITIONS
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: PATIENTS_CONDITIONS
+    left_table: CONDITIONS
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: ENCOUNTERS_DEVICES
+    left_table: DEVICES
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: PATIENTS_DEVICES
+    left_table: DEVICES
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: ORGANIZATIONS_ENCOUNTERS
+    left_table: ENCOUNTERS
+    right_table: ORGANIZATIONS
+    relationship_columns:
+      - left_column: ORGANIZATION_ID
+        right_column: ORGANIZATION_ID
+  - name: PATIENT_ENCOUNTERS
+    left_table: ENCOUNTERS
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: PAYERS_ENCOUNTERS
+    left_table: ENCOUNTERS
+    right_table: PAYERS
+    relationship_columns:
+      - left_column: PAYER_ID
+        right_column: PAYER_ID
+  - name: PROVIDERS_ENCOUNTERS
+    left_table: ENCOUNTERS
+    right_table: PROVIDERS
+    relationship_columns:
+      - left_column: PROVIDER_ID
+        right_column: PROVIDER_ID
+  - name: ENCOUNTER_IMAGING_STUDIES
+    left_table: IMAGING_STUDIES
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: PATIENT_IMAGING_STUDIES
+    left_table: IMAGING_STUDIES
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: ENCOUNTERS_IMMUNIZATIONS
+    left_table: IMMUNIZATIONS
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: PATIENTS_IMMUNIZATIONS
+    left_table: IMMUNIZATIONS
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: ENCOUNTERS_MEDICATIONS
+    left_table: MEDICATIONS
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: PATIENTS_MEDICATIONS
+    left_table: MEDICATIONS
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: PAYERS_MEDICATIONS
+    left_table: MEDICATIONS
+    right_table: PAYERS
+    relationship_columns:
+      - left_column: PAYER_ID
+        right_column: PAYER_ID
+  - name: ENCOUNTERS_OBSERVATIONS
+    left_table: OBSERVATIONS
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: PATIENTS_OBSERVATIONS
+    left_table: OBSERVATIONS
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: PATIENTS_PAYER_TRANSITIONS
+    left_table: PAYER_TRANSITIONS
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: PAYER_PAYER_TRANSITIONS
+    left_table: PAYER_TRANSITIONS
+    right_table: PAYERS
+    relationship_columns:
+      - left_column: PAYER_ID
+        right_column: PAYER_ID
+  - name: SECONDARY_PAYER_PAYER_TRANSITIONS
+    left_table: PAYER_TRANSITIONS
+    right_table: PAYERS
+    relationship_columns:
+      - left_column: SECONDARY_PAYER_ID
+        right_column: PAYER_ID
+  - name: ENCOUNTER_PROCEDURES
+    left_table: PROCEDURES
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: PATIENTS_PROCEDURES
+    left_table: PROCEDURES
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+  - name: PROVIDERS_ORGANIZATIONS
+    left_table: PROVIDERS
+    right_table: ORGANIZATIONS
+    relationship_columns:
+      - left_column: ORGANIZATION_ID
+        right_column: ORGANIZATION_ID
+  - name: ENCOUNTERS_SUPPLIES
+    left_table: SUPPLIES
+    right_table: ENCOUNTERS
+    relationship_columns:
+      - left_column: ENCOUNTER_ID
+        right_column: ENCOUNTER_ID
+  - name: PATIENTS_SUPPLIES
+    left_table: SUPPLIES
+    right_table: PATIENTS
+    relationship_columns:
+      - left_column: PATIENT_ID
+        right_column: PATIENT_ID
+verified_queries:
+  - name: What is the distribution of the top 10 conditions taken by patients in boston since the year 2000?
+    question: What is the distribution of the top 10 conditions taken by patients in boston since the year 2000?
+    sql: |-
+      SELECT
+        c.description AS condition_name,
+        COUNT(DISTINCT c.patient_id) AS patient_count
+      FROM
+        conditions AS c
+        LEFT OUTER JOIN patients AS p ON c.patient_id = p.patient_id
+      WHERE
+        p.city = 'Boston'
+        AND DATE_PART('YEAR', c.condition_start) >= 2000
+      GROUP BY
+        c.description
+      ORDER BY
+        patient_count DESC NULLS LAST
+      LIMIT
+        10
+    use_as_onboarding_question: true
+    verified_by: Jason Onysko
+    verified_at: 1758754875
+  - name: What are the top 10 most expensive medical procedures by total cost, and what is the average cost per procedure for each of these top procedures?
+    question: What are the top 10 most expensive medical procedures by total cost, and what is the average cost per procedure for each of these top procedures?
+    sql: |-
+      WITH __procedures AS (
+        SELECT
+          code,
+          description,
+          base_cost
+        FROM synthea.synthea.procedures
+      ), procedure_totals AS (
+        SELECT
+          code,
+          description,
+          SUM(base_cost) AS total_cost,
+          COUNT(*) AS procedure_count,
+          AVG(base_cost) AS avg_cost_per_procedure
+        FROM __procedures
+        GROUP BY
+          code,
+          description
+      ), ranked_procedures AS (
+        SELECT
+          code,
+          description,
+          total_cost,
+          procedure_count,
+          avg_cost_per_procedure,
+          RANK() OVER (ORDER BY total_cost DESC NULLS LAST) AS rnk
+        FROM procedure_totals
+      )
+      SELECT
+        code,
+        description,
+        total_cost,
+        avg_cost_per_procedure
+      FROM ranked_procedures
+      WHERE
+        rnk <= 10
+      ORDER BY
+        total_cost DESC NULLS LAST
+       -- Generated by Cortex Analyst
+      ;
+    use_as_onboarding_question: true
+    verified_by: Jason Onysko
+    verified_at: 1758809723
+  - name: Which healthcare providers have the highest patient volume and what is their average cost per patient compared to the network average?
+    question: Which healthcare providers have the highest patient volume and what is their average cost per patient compared to the network average?
+    sql: |-
+      WITH __providers AS (
+        SELECT
+          city,
+          name,
+          provider_id,
+          state
+        FROM synthea.synthea.providers
+      ), __encounters AS (
+        SELECT
+          encounter_id,
+          provider_id,
+          total_claim_cost
+        FROM synthea.synthea.encounters
+      ), provider_metrics AS (
+        SELECT
+          p.provider_id,
+          p.name,
+          p.city,
+          p.state,
+          COUNT(DISTINCT e.encounter_id) AS patient_volume,
+          AVG(e.total_claim_cost) AS avg_cost_per_patient
+        FROM __providers AS p
+        LEFT OUTER JOIN __encounters AS e
+          ON p.provider_id = e.provider_id
+        WHERE
+          NOT e.total_claim_cost IS NULL
+        GROUP BY
+          p.provider_id,
+          p.name,
+          p.city,
+          p.state
+      ), network_avg AS (
+        SELECT
+          AVG(e.total_claim_cost) AS network_avg_cost
+        FROM __encounters AS e
+        WHERE
+          NOT e.total_claim_cost IS NULL
+      )
+      SELECT
+        pm.provider_id,
+        pm.name,
+        pm.city,
+        pm.state,
+        pm.patient_volume,
+        ROUND(pm.avg_cost_per_patient, 2) AS avg_cost_per_patient,
+        ROUND(na.network_avg_cost, 2) AS network_avg_cost,
+        ROUND(pm.avg_cost_per_patient - na.network_avg_cost, 2) AS cost_difference
+      FROM provider_metrics AS pm
+      CROSS JOIN network_avg AS na
+      ORDER BY
+        pm.patient_volume DESC NULLS LAST;
+    use_as_onboarding_question: true
+    verified_by: Jason Onysko
+    verified_at: 1758812899
+  - name: Show me the monthly trend of healthcare utilization and costs over the past 24 months, broken down by the top 10 most common condition categories.
+    question: Show me the monthly trend of healthcare utilization and costs over the past 24 months, broken down by the top 10 most common condition categories.
+    sql: |-
+      WITH __conditions AS (
+        SELECT
+          description,
+          encounter_id,
+          patient_id,
+          condition_start
+        FROM
+          synthea.synthea.conditions
+      ),
+      __encounters AS (
+        SELECT
+          encounter_id,
+          encounter_start,
+          total_claim_cost
+        FROM
+          synthea.synthea.encounters
+      ),
+      top_conditions AS (
+        SELECT
+          c.description AS condition_name
+        FROM
+          __conditions AS c
+        WHERE
+          c.condition_start >= DATEADD(MONTH, -24, CURRENT_DATE)
+        GROUP BY
+          c.description
+        ORDER BY
+          COUNT(DISTINCT c.patient_id) DESC NULLS LAST
+        LIMIT
+          10
+      ), monthly_data AS (
+        SELECT
+          DATE_TRUNC('MONTH', e.encounter_start) AS month,
+          c.description AS condition_name,
+          COUNT(e.encounter_id) AS encounter_count,
+          SUM(e.total_claim_cost) AS total_cost
+        FROM
+          __encounters AS e
+          LEFT OUTER JOIN __conditions AS cond ON e.encounter_id = cond.encounter_id
+          LEFT OUTER JOIN __conditions AS c ON cond.patient_id = c.patient_id
+        WHERE
+          e.encounter_start >= DATEADD(MONTH, -24, CURRENT_DATE)
+          AND c.description IN (
+            SELECT
+              condition_name
+            FROM
+              top_conditions
+          )
+        GROUP BY
+          DATE_TRUNC('MONTH', e.encounter_start),
+          c.description
+      )
+      SELECT
+        DATE_PART('year', month) AS year,
+        DATE_PART('month', month) AS month,
+        condition_name,
+        encounter_count,
+        total_cost
+      FROM
+        monthly_data
+      ORDER BY
+        month DESC NULLS LAST,
+        condition_name;
+    use_as_onboarding_question: false
+    verified_by: Jason Onysko
+    verified_at: 1758820572
+  - name: Which medical conditions treated in emergency departments have the highest average cost per patient encounter over the past 6 months? Show the top 15 conditions with their average treatment cost, total number of ED encounters, and total cost burden. Include only conditions with at least 20 ED encounters and exclude any encounters lasting longer than 3 days to focus on true emergency care rather than extended hospitalizations.
+    question: Which medical conditions treated in emergency departments have the highest average cost per patient encounter over the past 6 months? Show the top 15 conditions with their average treatment cost, total number of ED encounters, and total cost burden. Include only conditions with at least 20 ED encounters and exclude any encounters lasting longer than 3 days to focus on true emergency care rather than extended hospitalizations.
+    sql: |-
+      SELECT
+        c.description AS condition_name,
+        AVG(e.total_claim_cost) AS avg_treatment_cost_per_encounter,
+        COUNT(e.encounter_id) AS total_ed_encounters,
+        SUM(e.total_claim_cost) AS total_cost_burden
+      FROM synthea.synthea.conditions c
+      LEFT JOIN synthea.synthea.encounters e ON c.encounter_id = e.encounter_id
+      WHERE e.total_claim_cost IS NOT NULL
+        AND e.encounterclass like '%emergency%'
+        AND e.encounter_start >= DATEADD(MONTH, -18, CURRENT_DATE)
+        AND DATEDIFF(DAY, e.encounter_start, e.encounter_stop) <= 3
+      GROUP BY c.description
+      HAVING COUNT(e.encounter_id) >= 20
+      ORDER BY avg_treatment_cost_per_encounter DESC
+      LIMIT 15;
+    use_as_onboarding_question: false
+    verified_by: Jason Onysko
+    verified_at: 1758814163
+  - name: For patients diagnosed with Type 2 Diabetes, Hypertension, or Chronic Kidney Disease in the past 3 years, calculate the total healthcare costs incurred from their initial diagnosis date through today. Compare the average annual cost per patient for each condition, the average number of encounters per year since diagnosis, and identify patients whose annual costs exceed the 90th percentile for their condition. This will help identify high-cost chronic disease patients for case management programs.
+    question: For patients diagnosed with Type 2 Diabetes, Hypertension, or Chronic Kidney Disease in the past 3 years, calculate the total healthcare costs incurred from their initial diagnosis date through today. Compare the average annual cost per patient for each condition, the average number of encounters per year since diagnosis, and identify patients whose annual costs exceed the 90th percentile for their condition. This will help identify high-cost chronic disease patients for case management programs.
+    sql: |-
+      WITH chronic_patients AS (
+        SELECT
+          patient_id,
+          description AS condition_name,
+          MIN(condition_start) AS first_diagnosis_date
+        FROM synthea.synthea.conditions
+        WHERE description IN (
+          'Diabetes mellitus type 2 (disorder)',
+          'Essential hypertension (disorder)',
+          'Chronic kidney disease stage 3 (disorder)'
+        )
+          AND condition_start >= DATEADD(YEAR, -3, CURRENT_DATE)
+        GROUP BY patient_id, description
+      ),
+      patient_costs AS (
+        SELECT
+          cp.patient_id,
+          cp.condition_name,
+          cp.first_diagnosis_date,
+          SUM(e.total_claim_cost) AS total_lifetime_costs,
+          COUNT(e.encounter_id) AS total_encounters,
+          DATEDIFF(DAY, cp.first_diagnosis_date, CURRENT_DATE) / 365.0 AS years_since_diagnosis
+        FROM chronic_patients cp
+        LEFT JOIN synthea.synthea.encounters e ON cp.patient_id = e.patient_id
+        WHERE e.total_claim_cost IS NOT NULL
+          AND e.encounter_start >= cp.first_diagnosis_date
+        GROUP BY cp.patient_id, cp.condition_name, cp.first_diagnosis_date
+        HAVING years_since_diagnosis >= 0.5  -- At least 6 months since diagnosis
+      ),
+      condition_percentiles AS (
+        SELECT
+          condition_name,
+          PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY total_lifetime_costs / years_since_diagnosis) AS cost_90th_percentile
+        FROM patient_costs
+        GROUP BY condition_name
+      )
+      SELECT
+        pc.condition_name,
+        COUNT(DISTINCT pc.patient_id) AS total_patients,
+        ROUND(AVG(pc.total_lifetime_costs / pc.years_since_diagnosis), 2) AS avg_annual_cost_per_patient,
+        ROUND(AVG(pc.total_encounters / pc.years_since_diagnosis), 1) AS avg_encounters_per_year,
+        ROUND(cp.cost_90th_percentile, 2) AS cost_90th_percentile,
+        COUNT(CASE WHEN (pc.total_lifetime_costs / pc.years_since_diagnosis) > cp.cost_90th_percentile 
+          THEN 1 END) AS high_cost_patients
+      FROM patient_costs pc
+      LEFT JOIN condition_percentiles cp ON pc.condition_name = cp.condition_name
+      GROUP BY pc.condition_name, cp.cost_90th_percentile
+      ORDER BY avg_annual_cost_per_patient DESC;
+    use_as_onboarding_question: false
+    verified_by: Jason Onysko
+    verified_at: 1758814503
+custom_instructions: 1. When generating SQL that asks for a date part of a time dimension, do not include the underlying date or datetime field in the SELECT clause used to derive the date part.  For example, if the user asks for 'Year' and the SQL generates a data part function like 'YEAR(TIME_DIMENSION)', only include the 'Year' and not the 'Time_Dimension' in the generated SQL. 2. When returning a number that is the result of an aggregate function (e.g. SUM or COUNT), use a comma to separate thousands in the output.
