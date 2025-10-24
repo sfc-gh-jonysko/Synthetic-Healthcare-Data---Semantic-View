@@ -10,3 +10,4 @@ There are three files here:
 3. SiS app code for a Cortex Analyst app.  The app is branded for Aetna.  After editing any code to make it work in your Snowflake account, you can cut and paste the whole code into Cursor and leverage Cursor to re-brand it however you want.
 
 
+<img width="948" height="819" alt="Screenshot 2025-10-24 at 3 01 48 PM" src="https://github.com/user-attachments/assets/d727eb29-2a0b-4dcb-be49-4406d48e0a7f" />
